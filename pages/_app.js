@@ -6,11 +6,15 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 function MyApp({ Component, pageProps }) {
   return (
+    <StyledEngineProvider injectFirst>
+
+    
     <Provider store={store}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
     </Provider>
+    </StyledEngineProvider>
   )
   
 }
