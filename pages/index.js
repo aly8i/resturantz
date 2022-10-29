@@ -7,6 +7,7 @@ import PizzaWrapper from "../components/PizzaWrapper";
 import styles from "../styles/Home.module.css";
 import { addSocial,addID,addToken, resetUser } from "../components/redux/userSlice";
 import Arrow from "../components/Arrow";
+import Footer from "../components/Footer";
 
 
 export default function Home({ pizzaList,user,loggedIn}) {
@@ -90,6 +91,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
       <Featured />
       <PizzaWrapper pizzaList={pizzaList}/>
       <Arrow/>
+      <Footer/>
     </div>
   );
 }
