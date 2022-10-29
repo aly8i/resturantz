@@ -4,7 +4,9 @@ import axios from 'axios'
 
 const products = ({products}) => {
   return (
-    <div>{products.name}</div>
+    <div>{products.map((product)=>(
+        <div>product.name</div>
+    ))}</div>
   )
 }
 
