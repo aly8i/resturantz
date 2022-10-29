@@ -5,7 +5,7 @@ import MobileNavMenu from "./MobileNavMenu";
 const Layout = ({ children }) => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
       {/* <MobileNavMenu/> */}
       <Footer />

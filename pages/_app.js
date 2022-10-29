@@ -8,9 +8,9 @@ import { StyledEngineProvider } from '@mui/material/styles';
 function MyApp({ Component, pageProps }) {
   return (
     // <Provider store={store}>
-      <Layout>
+      // <Layout>
         <Component {...pageProps} />
-      </Layout>
+      // </Layout>
     // </Provider>
   )
   
