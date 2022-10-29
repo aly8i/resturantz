@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const products = ({products}) => {
   return (
-    <div>{products}</div>
+    <div>{products.name}</div>
   )
 }
 
@@ -18,7 +18,7 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            products: res.json()
+            products: res.data
         },
       };
 }
