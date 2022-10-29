@@ -1,0 +1,52 @@
+.container{
+    width: 100%;
+    height: 50%;
+}
+.copyright{
+    background-color: rgba(0, 0, 0, 0.025);
+
+}
+.facebook{
+    color:blue;
+}
+.facebook:hover{
+    color:darkblue;
+}
+.whatsapp{
+    color:lightgreen;
+}
+.whatsapp:hover{
+    color:darkgreen;
+}
+.twitter{
+    color:rgb(0, 183, 255);
+}
+.twitter:hover{
+    color:blue;
+}
+.google{
+    color:red;
+}
+.google:hover{
+    color:darkred;
+}
+
+.instagram{
+    color: violet;
+}
+.instagram:hover{
+    color: purple;
+}
+
+.linkedin{
+    color:rgb(37, 53, 222);
+}
+.linkedin:hover{
+    color: darkblue;
+}
+.github{
+    color: black;
+}
+.github:hover{
+    color: grey;
+}
