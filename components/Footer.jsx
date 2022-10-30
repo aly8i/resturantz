@@ -21,7 +21,7 @@ const Footer = ({sliderData}) => {
     <div id="footer" className={styles.container}>
       <div className={styles.item}>
         <div className={styles.bgimg}>
-          {/* <BackgroundSlider images={sliderData} duration={5} transition={2} ></BackgroundSlider> */}
+          <BackgroundSlider images={data} duration={5} transition={2} ></BackgroundSlider>
         </div>
       </div>
     </div>
