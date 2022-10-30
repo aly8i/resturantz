@@ -8,10 +8,10 @@ import Footer from "../components/Footer";
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      {/* <Layout> */}
+      <Layout>
         <Component {...pageProps} />
         <Footer />
-      {/* </Layout> */}
+      </Layout>
     </Provider>
   )
   
