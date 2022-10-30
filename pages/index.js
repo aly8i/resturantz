@@ -26,8 +26,8 @@ export default function Home({ pizzaList,user,loggedIn}) {
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}`,
-        },
+          "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}`
+        }
       })
         .then((response) => {
           if (response.status === 200) return response.json();
