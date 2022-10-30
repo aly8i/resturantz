@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/Footer.module.css";
-// import BackgroundSlider from 'react-background-slider'
+import BackgroundSlider from 'react-background-slider'
 import axios from "axios";
 import { useEffect,useState } from "react";
 const Footer = ({sliderData}) => {
