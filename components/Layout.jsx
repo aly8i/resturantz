@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect,useState } from "react";
 import Footer from "./Footer";
-// import Navbar from "./Navbar";
+import Navbar from "./Navbar";
 import Bottom from'./Bottom';
-// import MobileNavMenu from "./MobileNavMenu";
+import MobileNavMenu from "./MobileNavMenu";
 const Layout = ({ children}) => {
   const [statics,setStatics] = useState({});
   useEffect(()=>{
@@ -17,9 +17,9 @@ const Layout = ({ children}) => {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
-      {/* <MobileNavMenu/> */}
+      <MobileNavMenu/>
       <Footer statics={statics}/>
       <Bottom/>
     </>

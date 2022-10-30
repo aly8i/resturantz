@@ -10,9 +10,9 @@ import FastfoodIcon from '@mui/icons-material/Fastfood';
 import HomeIcon from '@mui/icons-material/Home';
 import styles from "../styles/mobileNavMenu.module.css";
 import { updateQuery } from "./redux/filterSlice";
-import { useDispatch, useSelector } from "react-redux";
-import Link from "next/link";
+import { useDispatch } from "react-redux";
 import { Link as ScrollLink } from "react-scroll" ;
+import { useRouter } from 'next/router';
 
 const actions = [
   { icon: <LunchDiningIcon />, name: 'Burgers', action:'burger' },
@@ -25,13 +25,15 @@ const actions = [
 
 export default function MobileNavMenu() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleFilter = (query) =>{
+    router.push({pathname:'/'}, undefined, { scroll: false });
     dispatch(updateQuery({query}));
+
   }
   return (
     <div className={styles.container}>
-      <Link href={"/"} passHref>
-        <ScrollLink to="pizzawrapper" spy={true} smooth={true} offset={-100} duration={500}>
+      <ScrollLink to="pizzawrapper" spy={true} smooth={true} offset={-100} duration={500}>
         <SpeedDial
           ariaLabel="SpeedDial basic example"
           sx={{ position: 'absolute', bottom: 16, right: 16 }}
@@ -42,7 +44,7 @@ export default function MobileNavMenu() {
                   bgcolor: '#DBDBDB',
                 }
               }
-            }} className={styles.icon}/>}
+            }} className={styles.icon} onClick={()=>handleFilter("")}/>}
           className={styles.dial}
           FabProps={{
               sx: {
@@ -53,7 +55,9 @@ export default function MobileNavMenu() {
               }
             }}
         >
+          
           {actions.map((action) => (
+            
             <SpeedDialAction
               key={action.name}
               icon={action.icon}
@@ -61,10 +65,10 @@ export default function MobileNavMenu() {
               className={styles.icon}
               onClick={()=>handleFilter(action.action)}
             />
+            
           ))}
         </SpeedDial>
-        </ScrollLink>
-      </Link>
+      </ScrollLink>
     </div>
   );
 }
