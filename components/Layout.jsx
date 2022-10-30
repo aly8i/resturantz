@@ -8,7 +8,7 @@ const Layout = ({ children,statics }) => {
       {/* <Navbar /> */}
       {children}
       {/* <MobileNavMenu/> */}
-      <Footer sliderData={statics?.slider2}/>
+      <Footer statics={statics}/>
       {/* <Bottom/> */}
     </>
   );
