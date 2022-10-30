@@ -66,7 +66,7 @@ const Product = ({ product }) => {
       <Roll left>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={product.img} objectFit="contain" fill alt="" />
+          <Image src={product.img} object-fit="contain" fill alt="" />
         </div>
       </div>
     </Roll>
