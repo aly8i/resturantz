@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import Footer from "./Footer";
 // import Navbar from "./Navbar";
-// import Bottom from'./Bottom';
+import Bottom from'./Bottom';
 // import MobileNavMenu from "./MobileNavMenu";
 const Layout = ({ children}) => {
   const [statics,setStatics] = useState({});
@@ -21,7 +21,7 @@ const Layout = ({ children}) => {
       {children}
       {/* <MobileNavMenu/> */}
       <Footer statics={statics}/>
-      {/* <Bottom/> */}
+      <Bottom/>
     </>
   );
 };

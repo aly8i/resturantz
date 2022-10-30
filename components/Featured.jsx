@@ -36,7 +36,7 @@ const Featured = () => {
           return (
             <SwiperSlide key={id} className={styles.wrapper}>
               <div className={styles.imgContainer}>
-                <img src={image} alt={image} layout="fill" objectFit="contain" />
+                <Image src={image} alt={image} fill object-fit="contain" />
               </div>
             </SwiperSlide>
           );

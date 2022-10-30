@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/Footer.module.css";
 import BackgroundSlider from 'react-background-slider'
 import axios from "axios";
@@ -20,10 +19,7 @@ const Footer = () => {
     <div id="footer" className={styles.container}>
       <div className={styles.item}>
         <div className={styles.bgimg}>
-          {/* <h1 style={{color:"white"}}>{data[2]}</h1> */}
-          <BackgroundSlider
-  images={data}
-  duration={10} transition={2} />
+          <BackgroundSlider images={data} duration={10} transition={2} />
         </div>
       </div>
     </div>
