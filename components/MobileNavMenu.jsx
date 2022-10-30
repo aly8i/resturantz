@@ -47,12 +47,12 @@ export default function MobileNavMenu() {
             }} className={styles.icon} onClick={()=>handleFilter("")}/>}
           className={styles.dial}
           FabProps={{
-              sx: {
-                bgcolor: '#FFFFFF',
-                '&:hover': {
-                  bgcolor: '#DBDBDB',
+                sx: {
+                  bgcolor: '#FFFFFF',
+                  '&:hover': {
+                    bgcolor: '#DBDBDB',
+                  }
                 }
-              }
             }}
         >
           
