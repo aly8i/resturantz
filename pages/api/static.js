@@ -4,7 +4,7 @@ import AuthorizedPostPutDelete from "../../middlewares/AuthorizedPostPutDelete";
 export default AuthorizedPostPutDelete( async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  await dbConnect();
 
   if (method === "GET") {
     try {
