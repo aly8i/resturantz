@@ -6,11 +6,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 a{
-  text-decoration: dashed;
-  color: #d1411e;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
 }
 * {
   box-sizing: border-box;
+  text-decoration: none;
 }
 ::-webkit-scrollbar{
   width: 1em;
