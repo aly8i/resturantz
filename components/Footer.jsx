@@ -4,7 +4,7 @@ import BackgroundSlider from 'react-background-slider'
 import axios from "axios";
 import { useEffect,useState } from "react";
 const Footer = ({sliderData}) => {
-  const [data,setData]=useState(sliderData);
+  const [data,setData]=useState([sliderData]);
   useEffect(async()=>{
     console.log(data)
     // try{
