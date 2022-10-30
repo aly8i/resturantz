@@ -25,7 +25,7 @@ export const getServerSideProps = async (context) => {
   });
   return {
     props: {
-        statics: statics
+        statics: statics.data
     },
   };
 }
