@@ -5,10 +5,10 @@ import { Provider } from "react-redux";
 // import Footer from "../components/Footer";
 // import { StyledEngineProvider } from '@mui/material/styles';
 
-function MyApp({ Component, pageProps, statics }) {
+function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <Layout statics={statics}>
+      <Layout >
         <Component {...pageProps} />
         {/* <Footer /> */}
       </Layout>
@@ -18,14 +18,3 @@ function MyApp({ Component, pageProps, statics }) {
 }
 
 export default MyApp
-
-export const getServerSideProps = async (context) => {
-  const statics = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/static`).catch((err)=>{
-    console.log(err);
-  });
-  return {
-    props: {
-        statics: statics.data
-    },
-  };
-}

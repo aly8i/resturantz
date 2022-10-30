@@ -9,9 +9,7 @@ import {useState,useEffect} from 'react'
 import axios from "axios";
 const Featured = () => {
   const [data,setData]=useState([
-    "/img/featured.png",
-    "/img/featured2.png",
-    "/img/featured3.png"
+    "/img/featured.png"
   ]);
   useEffect(()=>{
     try{
@@ -38,7 +36,7 @@ const Featured = () => {
           return (
             <SwiperSlide key={id} className={styles.wrapper}>
               <div className={styles.imgContainer}>
-                <img src={image} alt={image} fill objectFit="contain" />
+                <img src={image} alt={image} layout="fill" objectFit="contain" />
               </div>
             </SwiperSlide>
           );
