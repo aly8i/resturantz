@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/Footer.module.css";
-import BackgroundSlider from 'react-background-slider'
+// import BackgroundSlider from 'react-background-slider'
 import axios from "axios";
 import { useEffect,useState } from "react";
 const Footer = () => {
@@ -18,8 +18,7 @@ const Footer = () => {
     <div id="footer" className={styles.container}>
       <div className={styles.item}>
         <div className={styles.bgimg}>
-          <BackgroundSlider images={sliderData} duration={5} transition={2} >
-        </BackgroundSlider>
+          {/* <BackgroundSlider images={sliderData} duration={5} transition={2} ></BackgroundSlider> */}
         </div>
       </div>
     </div>
