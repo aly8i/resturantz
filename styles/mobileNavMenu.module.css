@@ -6,7 +6,7 @@
     display: none;
 }
 .icon{
-    color:red;
+    color:red !important;
 
 }
 .dial{
