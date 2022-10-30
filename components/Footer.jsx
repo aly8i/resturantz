@@ -9,6 +9,7 @@ const Footer = () => {
     try{
     axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/static/`).then((res)=>{
       setSliderData(res.data.slider2);
+    }).then(()=>{
       console.log(sliderData)
     });
     }catch(err){
