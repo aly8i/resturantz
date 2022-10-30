@@ -1,4 +1,4 @@
-// import Footer from "./Footer";
+import Footer from "./Footer";
 // import Navbar from "./Navbar";
 // import Bottom from'./Bottom';
 // import MobileNavMenu from "./MobileNavMenu";
@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       {/* <Navbar /> */}
       {children}
       {/* <MobileNavMenu/> */}
-      {/* <Footer /> */}
+      <Footer />
       {/* <Bottom/> */}
     </>
   );
