@@ -39,7 +39,7 @@ export default function MobileNavMenu() {
           sx={{ position: 'absolute', bottom: 16, right: 16 }}
           icon={<HomeIcon FabProps={{
               sx: {
-                bgcolor: ' #FFFFFF',
+                bgcolor: '#FFFFFF',
                 '&:hover': {
                   bgcolor: '#DBDBDB',
                 }
@@ -48,7 +48,7 @@ export default function MobileNavMenu() {
           className={styles.dial}
           FabProps={{
               sx: {
-                bgcolor: ' #FFFFFF',
+                bgcolor: '#FFFFFF',
                 '&:hover': {
                   bgcolor: '#DBDBDB',
                 }
