@@ -21,7 +21,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
       if(loggedIn==false && user != {}){
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
