@@ -22,6 +22,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, {
         method: "GET",
         mode: 'cors',
+        referrerPolicy: 'origin',
         headers: {
           'Access-Control-Allow-Origin':'*'
         }
