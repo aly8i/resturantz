@@ -20,15 +20,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
     const getUser = () => {
       if(loggedIn==false && user != {}){
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, {
-        method: "GET",
-        mode: 'cors',
-        referrerPolicy: 'origin',
-        headers: {
-          'Access-Control-Allow-Origin':'*',
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true
-        }
+        method: "GET" 
 
         // credentials: "include",
         // headers: {
