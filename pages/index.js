@@ -20,15 +20,15 @@ export default function Home({ pizzaList,user,loggedIn}) {
     const getUser = () => {
       if(loggedIn==false && user != {}){
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, {
-        method: "GET" 
+        method: "GET" ,
 
         // credentials: "include",
-        // headers: {
+        headers: {
         //   Accept: "application/json",
         //   "Content-Type": "application/json",
         //   "Access-Control-Allow-Credentials": true,
-        //   "Access-Control-Allow-Origin": "*"
-        // }
+          "Access-Control-Allow-Origin": "*"
+        }
       })
         .then((response) => {
           if (response.status === 200) return response.json();
