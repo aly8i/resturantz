@@ -24,7 +24,10 @@ export default function Home({ pizzaList,user,loggedIn}) {
         mode: 'cors',
         referrerPolicy: 'origin',
         headers: {
-          'Access-Control-Allow-Origin':'*'
+          'Access-Control-Allow-Origin':'*',
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true
         }
 
         // credentials: "include",
