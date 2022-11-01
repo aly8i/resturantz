@@ -27,7 +27,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
         //   Accept: "application/json",
         //   "Content-Type": "application/json",
         //   "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "*"
+          "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_UR}`
         }
       })
         .then((response) => {
