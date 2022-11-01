@@ -24,7 +24,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
         mode: 'cors',
         referrerPolicy: 'origin',
         headers: {
-          'Access-Control-Allow-Origin':'*',
+          'Access-Control-Allow-Origin':`${process.env.NEXT_PUBLIC_SERVER_URL}`,
           Accept: "application/json",
           "Content-Type": "application/json",
           "Access-Control-Allow-Credentials": true
