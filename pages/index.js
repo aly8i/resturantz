@@ -19,8 +19,13 @@ export default function Home({ pizzaList,user,loggedIn}) {
   useEffect(() => {
     const getUser = () => {
       if(loggedIn==false && user != {}){
-      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`,{referrerPolicy: 'no-referrer-when-downgrade'})
-        .then((response) => {
+        // const config = { headers:{
+        //   "Referer": "https://www.scrapingbee.com/",
+        //   "Referrer-Policy": 'no-referrer-when-downgrade'
+        // }}
+      // axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`,{referrerPolicy: 'no-referrer-when-downgrade'})
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, { method: "GET", credentials: "include", headers: { Accept: "application/json", "Content-Type": "application/json", "Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}` } })
+      .then((response) => {
           if (response.status === 200) return response.json();
           throw new Error("authentication has been failed!");
         })
