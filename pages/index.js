@@ -19,17 +19,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
   useEffect(() => {
     const getUser = () => {
       if(loggedIn==false && user != {}){
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, {
-        method: "GET" ,
-
-        // credentials: "include",
-        headers: {
-        //   Accept: "application/json",
-        //   "Content-Type": "application/json",
-        //   "Access-Control-Allow-Credentials": true,
-          "Access-Control-Allow-Origin": "https://restoserver.herokuapp.com"
-        }
-      })
+      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`)
         .then((response) => {
           if (response.status === 200) return response.json();
           throw new Error("authentication has been failed!");
