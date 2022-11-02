@@ -24,7 +24,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
         //   "Referrer-Policy": 'no-referrer-when-downgrade'
         // }}
       // axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`,{referrerPolicy: 'no-referrer-when-downgrade'})
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, { method: "GET",referrerPolicy: "unsafe-url", credentials: "include", headers: { Accept: "application/json", "Content-Type": "application/json", "Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}`,"Referer": `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success` } })
+      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, { method: "GET",referrerPolicy: "unsafe-url", credentials: "include", headers: { Accept: "application/json", "Content-Type": "application/json", "Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}`,"Referer": "https://resturantz.vercel.app" } })
       .then((response) => {
           if (response.status === 200) return response.json();
           throw new Error("authentication has been failed!");
