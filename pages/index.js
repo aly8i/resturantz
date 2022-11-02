@@ -19,7 +19,7 @@ export default function Home({ pizzaList,user,loggedIn}) {
   useEffect(() => {
     const getUser = () => {
       if(loggedIn==false && user != {}){
-      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`)
+      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`,{referrerPolicy: 'no-referrer-when-downgrade'})
         .then((response) => {
           if (response.status === 200) return response.json();
           throw new Error("authentication has been failed!");
