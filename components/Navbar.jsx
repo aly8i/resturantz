@@ -7,12 +7,17 @@ import Link from "next/link";
 import Tada from 'react-reveal/Tada'
 import { motion } from "framer-motion";
 import NavMenu from "./NavMenu";
-
+import { signOut } from "next-auth/react"
+import { deleteCookie } from 'cookies-next';
+import axios from 'axios';
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user);
-  const logout = () => {
-    window.open(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/logout`, "_self");
+  const logout = async() => {
+    // window.open(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/logout`, "_self");
+   const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`)
+    signOut();
+    
   };
   return (
     <div className={styles.container}>
@@ -42,7 +47,7 @@ const Navbar = () => {
             <motion.div className={styles.logout} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}}>
               Login
             </motion.div>
-          </Link>):(<motion.div className={styles.logout} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}} onClick={logout}>
+          </Link>):(<motion.div className={styles.logout} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}} onClick={()=>logout()}>
             Logout
           </motion.div>)
           }

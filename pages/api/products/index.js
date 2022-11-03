@@ -1,7 +1,7 @@
 import dbConnect from "../../../util/mongo";
 import Product from "../../../models/Product";
 import AuthorizedPostPutDelete from "../../../middlewares/AuthorizedPostPutDelete";
-export default AuthorizedPostPutDelete( async function handler(req, res) {
+const handler = AuthorizedPostPutDelete(async(req, res) => {
   const { method } = req;
   await dbConnect();
 
@@ -23,3 +23,4 @@ export default AuthorizedPostPutDelete( async function handler(req, res) {
     }
   }
 });
+export default handler;

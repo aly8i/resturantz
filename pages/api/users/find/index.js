@@ -6,7 +6,7 @@ import generateAccessToken from "../../../../functions/generateAccessToken";
 export default async function handler(req, res) {
   const { method } = req;
 
-  dbConnect();
+  await dbConnect();
 
   if (method === "POST") {
     try {

@@ -7,7 +7,7 @@ function PizzaWrapper({pizzaList}) {
 const filter = useSelector((state) => state.filter);
   return (
       <div className={styles.wrapper} id="pizzawrapper">
-          {pizzaList.filter(pizza => pizza.category.includes(filter.query)).map((pizza,id) => (
+          {pizzaList?.filter(pizza => pizza?.category?.includes(filter.query)).map((pizza,id) => (
             <PizzaCard key={pizza._id} pizza={pizza} id={id} />
           ))}
       </div>

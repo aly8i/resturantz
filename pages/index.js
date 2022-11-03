@@ -7,6 +7,8 @@ import PizzaWrapper from "../components/PizzaWrapper";
 import styles from "../styles/Home.module.css";
 import { addSocial,addID,addToken, resetUser } from "../components/redux/userSlice";
 import Arrow from "../components/Arrow";
+import { useSession } from "next-auth/react"
+
 
 
 export default function Home({ pizzaList,user,loggedIn}) {
@@ -16,26 +18,15 @@ export default function Home({ pizzaList,user,loggedIn}) {
   const [username,setUsername]= useState("");
   const [fullname,setFullname]= useState("");
   const dispatch = useDispatch();
+  const { data: session } = useSession()
   useEffect(() => {
-    const getUser = () => {
-      if(loggedIn==false && user != {}){
-        // const config = { headers:{
-        //   "Referer": "https://www.scrapingbee.com/",
-        //   "Referrer-Policy": 'no-referrer-when-downgrade'
-        // }}
-      // axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`,{referrerPolicy: 'no-referrer-when-downgrade'})
-      fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login/success`, { method: "GET",referrerPolicy: "unsafe-url", credentials: "include", headers: { Accept: "application/json", "Content-Type": "application/json", "Access-Control-Allow-Credentials": true, "Access-Control-Allow-Origin": `${process.env.NEXT_PUBLIC_SERVER_URL}`,"Referer": "https://resturantz.vercel.app" } })
-      .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          setImg(resObject.user.photos[0].value);
-          setUsername(resObject.user.displayName);
-          setFullname(resObject.user.displayName);
-          setGoogleID(resObject.user.id);
-          setToken(resObject.token)
-        }).then(async()=>{
+    const updateState = ()=>{
+      setImg(session?.user?.image);
+      setUsername(session?.user?.name);
+      setFullname(session?.user?.name);
+      setGoogleID(session?.user?.email);
+    }
+    const postUser = async()=>{
           const newuser={
             googleID,
             username,
@@ -55,32 +46,35 @@ export default function Home({ pizzaList,user,loggedIn}) {
               console.log(err);
             }
           }
-        })
-        .then((id)=>{
-          dispatch(addSocial({img,username,fullname}));
-          dispatch(addID({id}));
-          dispatch(addToken({token}));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }else if(loggedIn==false && user == {}) {
-          dispatch(resetUser());
+        }
+        
+    const getUser = () => {
+      if(loggedIn==false){
+        if(session){
+          updateState();
+            postUser().then((id)=>{
+              dispatch(addSocial({img,username,fullname}));
+              dispatch(addID({id}));
+              // dispatch(addToken({token}));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+                  }
       }else{
-        dispatch(addID({id:user.sub}));
-        dispatch(addSocial({img:user.img,username:user.username,fullname:user.username}));
-        setUsername(user.username);
-        setImg(user.img);
-        setFullname(user.fullname);
+        dispatch(addID({id:user?.sub}));
+        dispatch(addSocial({img:user?.img,username:user?.username,fullname:user?.username}));
+        setUsername(user?.username);
+        setImg(user?.img);
+        setFullname(user?.fullname);
       }
-      }
-      
+    }
     getUser();
-  }, [img,username,fullname]);
+  }, [session,img]);
   return (
     <div className={styles.container}>
       <Head>
-        <title>HFC Resturant</title>
+        <title>Resturantz</title>
         <meta name="description" content="Best Food shop in town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -93,28 +87,27 @@ export default function Home({ pizzaList,user,loggedIn}) {
 
 export const getServerSideProps = async (context) => {
 
-  var token = context.req.cookies.accessToken;
+  var token = context?.req?.cookies?.accessToken||"";
   var loggedIn=true;
-  var user = {}
-
-  const products = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`).catch((err)=>{
+  var user = "";
+  var products= await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`).then((res)=>res.data).catch((err)=>{
     console.log(err);
   });
 
   const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signinwithtoken`,{token:token},{
     withCredentials: true
   }).catch((err)=>{
-    if(err.response.status>300){
+    if(err?.response?.status>300){
       loggedIn = false;
     }
   });
 
   if(loggedIn==true)
-    user=res.data
+    user=res?.data
   
   return {
     props: {
-      pizzaList: products.data,
+      pizzaList: products,
       user : user,
       loggedIn : loggedIn,
     },
