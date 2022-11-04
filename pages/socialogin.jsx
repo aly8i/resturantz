@@ -16,7 +16,6 @@ const SocialLogin = ({token}) => {
   const { data: session } = useSession()
   const handleSignIn = (method)=>{
     signIn(method,{callbackUrl:`${process.env.NEXT_PUBLIC_BASE_URL}`});
-    // setCookie('accessToken','iadjaijija',{  maxAge: 60 * 60 * 24 })
   }
 
   return (
@@ -52,7 +51,6 @@ const SocialLogin = ({token}) => {
           <div className={styles.down}>
             <Terms/>
           </div>
-          <h1>{token}{session?(session.user.email):("guest")}</h1>
         </div>
       </div>
     </div>
