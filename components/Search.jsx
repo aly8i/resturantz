@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Try.module.css'
+import styles from '../styles/Search.module.css'
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import Roll from 'react-reveal/Roll';
