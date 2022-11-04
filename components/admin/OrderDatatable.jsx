@@ -4,7 +4,7 @@ import { orderColumns } from "./datatablesource";
 import axios from "axios";
 import { useState , useEffect } from "react";
 import Link from "next/link";
-import SearchBar from "material-ui-search-bar";
+import Search from "../Search";
 import { useRouter } from 'next/router';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import DeliveryDialog from "./DeliveryDialog";
@@ -73,10 +73,10 @@ const OrderDatatable = ({orders,deliverys,token}) => {
       setRows(originalOrders)
     }
   };
-  const cancelSearch = () => {
-    setSearched("");
-    requestSearch(searched);
-  };
+  useEffect(()=>{
+      requestSearch(searched);
+  },[searched])
+
   const handleDelete = async (id) => {
     const res = await server.delete("api/orders/" + id);
     refreshData();
@@ -161,12 +161,9 @@ const OrderDatatable = ({orders,deliverys,token}) => {
     <>
       <div className={styles.datatable}>
         <div className={styles.datatableTitle}>
-        <SearchBar 
-        className={styles.search}
-        value={searched}
-        onChange={(searchVal) => requestSearch(searchVal)}
-        onCancelSearch={() => cancelSearch()}
-        />
+          <div className={styles.search}>
+            <Search setSearched={setSearched} searched={searched}/>
+          </div>
           <Link href="/admin/orders/new" passHref >
             <span className={styles.link}>Add New</span>
           </Link>

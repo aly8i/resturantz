@@ -4,7 +4,7 @@ import { productColumns } from "./datatablesource";
 import axios from "axios";
 import { useState,useEffect } from "react";
 import Link from "next/link";
-import SearchBar from "material-ui-search-bar";
+import Search from "../Search";
 
 const ProductsDatatable = ({products,token}) => {
   const originalProducts = products;
@@ -15,6 +15,9 @@ const ProductsDatatable = ({products,token}) => {
     headers: {'Content-Type':'application/json'},
     withCredentials: true
   });
+  useEffect(()=>{
+    requestSearch(searched);
+},[searched])
   useEffect(()=>{
     server.interceptors.request.use(
       async function (config) {
@@ -41,10 +44,6 @@ const ProductsDatatable = ({products,token}) => {
       setRows(originalProducts)
     }
     
-  };
-  const cancelSearch = () => {
-    setSearched("");
-    requestSearch(searched);
   };
 
   const handleDelete = async (id) => {
@@ -77,12 +76,9 @@ const ProductsDatatable = ({products,token}) => {
   return (
       <div className={styles.datatable}>
         <div className={styles.datatableTitle}>
-        <SearchBar 
-        className={styles.search}
-        value={searched}
-        onChange={(searchVal) => requestSearch(searchVal)}
-        onCancelSearch={() => cancelSearch()}
-        />
+          <div className={styles.search}>
+            <Search setSearched={setSearched} searched={searched}/>
+          </div>
           <Link href="/admin/products/new" passHref >
             <span className={styles.link}>Add New</span>
           </Link>
