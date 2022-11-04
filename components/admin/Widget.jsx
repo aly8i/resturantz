@@ -15,7 +15,7 @@ const Widget = ({ type,amount }) => {
         title: "USERS",
         isMoney: false,
         link: "See all users",
-        forward:"/admin2/users",
+        forward:"/admin/users",
         icon: (
           <PersonOutlinedIcon
             className={styles.icon}
@@ -32,7 +32,7 @@ const Widget = ({ type,amount }) => {
         title: "ORDERS",
         isMoney: false,
         link: "View all orders",
-        forward:"/admin2/orders",
+        forward:"/admin/orders",
         icon: (
           <ShoppingCartOutlinedIcon
             className={styles.icon}
@@ -62,7 +62,7 @@ const Widget = ({ type,amount }) => {
         title: "PRODUCTS",
         isMoney: false,
         link: "View all products",
-        forward:"/admin2/products",
+        forward:"/admin/products",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className={styles.icon}
@@ -85,7 +85,7 @@ const Widget = ({ type,amount }) => {
         <span className={styles.counter}>
           {data.isMoney && "$"} {amount}
         </span>
-        <Link href={data.forward?data.forward:"/admin2"} passHref>
+        <Link href={data.forward?data.forward:"/admin"} passHref>
           <span className={styles.link}>{data.link}</span>
         </Link>
       </div>

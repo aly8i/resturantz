@@ -52,15 +52,14 @@ export default function Home({ pizzaList,user,loggedIn}) {
       if(loggedIn==false){
         if(session){
           updateState();
-            postUser().then((id)=>{
-              dispatch(addSocial({img,username,fullname}));
-              dispatch(addID({id}));
-              // dispatch(addToken({token}));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-                  }
+          postUser().then((id)=>{
+            dispatch(addSocial({img,username,fullname}));
+            dispatch(addID({id}));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        }
       }else{
         dispatch(addID({id:user?.sub}));
         dispatch(addSocial({img:user?.img,username:user?.username,fullname:user?.username}));

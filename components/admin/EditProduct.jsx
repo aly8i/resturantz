@@ -65,7 +65,7 @@ const EditProduct = ({product,token}) => {
         try{
         postProduct(payload);
         setLoading(false);
-        router.push("/admin2/products");
+        router.push("/admin/products");
         }catch(err){
         console.log(err);
         }  

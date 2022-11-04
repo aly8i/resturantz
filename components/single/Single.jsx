@@ -9,7 +9,7 @@ const Single = ({user,orders,type}) => {
       <div className={styles.singleContainer}>
         <div className={styles.top}>
           <div className={styles.left}>
-            <Link href={type=="admin"?`/admin2/users/edit/${user._id}`:`/user/edit/${user._id}`} passHref>
+            <Link href={type=="admin"?`/admin/users/edit/${user._id}`:`/user/edit/${user._id}`} passHref>
               <div className={styles.editButton}>Edit</div>
             </Link>
             <h1 className={styles.title}>Information</h1>

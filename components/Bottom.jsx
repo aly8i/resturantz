@@ -103,7 +103,7 @@ function Bottom() {
             <a href="#!" className="text-reset">Settings</a>
           </p>
           <p>
-            <a href={`${process.env.NEXT_PUBLIC_BASE_URL}/admin2/`} className="text-reset">Admin2</a>
+            <a href={`${process.env.NEXT_PUBLIC_BASE_URL}/faq/`} className="text-reset">FAQ</a>
           </p>
           <p>
             <a href="#!" className="text-reset">Help</a>

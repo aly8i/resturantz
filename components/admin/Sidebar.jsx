@@ -23,39 +23,39 @@ const Sidebar = () => {
       <div className={styles.center}>
         <ul>
           <p className={styles.title}>MAIN</p>
-          <Link href="/admin2" passHref>
+          <Link href="/admin" passHref>
             <li>
               <DashboardIcon className={styles.icon} />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className={styles.title}>LISTS</p>
-            <Link href="/admin2/users" passHref>
+            <Link href="/admin/users" passHref>
               <li>
                 <PersonOutlineIcon className={styles.icon} />
                 <span>Users</span>
               </li>
             </Link>
-            <Link href="/admin2/products" passHref>
+            <Link href="/admin/products" passHref>
               <li>
                 <StoreIcon className={styles.icon} />
                 <span>Products</span>
               </li>
             </Link>
-            <Link href="/admin2/orders" passHref>
+            <Link href="/admin/orders" passHref>
               <li>
                 <CreditCardIcon className={styles.icon} />
                 <span>Orders</span>
               </li>
           </Link>
-          <Link href="/admin2/delivery" passHref>
+          <Link href="/admin/delivery" passHref>
             <li>
               <LocalShippingIcon className={styles.icon} />
               <span>Delivery</span>
             </li>
           </Link>
           <p className={styles.title}>USEFUL</p>
-          <Link href="/admin2/statics" passHref>
+          <Link href="/admin/statics" passHref>
           <li>
             <InsertChartIcon className={styles.icon} />
             <span>Statics</span>

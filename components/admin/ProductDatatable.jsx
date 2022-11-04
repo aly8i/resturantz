@@ -60,7 +60,7 @@ const ProductsDatatable = ({products,token}) => {
       renderCell: (params) => {
         return (
           <div className={styles.cellAction}>
-            <Link href={`/admin2/products/${params.row._id}`} passHref style={{ textDecoration: "none" }}>
+            <Link href={`/admin/products/${params.row._id}`} passHref style={{ textDecoration: "none" }}>
               <div className={styles.viewButton}>View</div>
             </Link>
             <div
@@ -83,7 +83,7 @@ const ProductsDatatable = ({products,token}) => {
         onChange={(searchVal) => requestSearch(searchVal)}
         onCancelSearch={() => cancelSearch()}
         />
-          <Link href="/admin2/products/new" passHref >
+          <Link href="/admin/products/new" passHref >
             <span className={styles.link}>Add New</span>
           </Link>
         </div>

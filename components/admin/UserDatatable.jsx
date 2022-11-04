@@ -64,7 +64,7 @@ const UserDatatable = ({users,token}) => {
       renderCell: (params) => {
         return (
           <div className={styles.cellAction}>
-            <Link href={`/admin2/users/${params.row._id}`} passHref style={{ textDecoration: "none" }}>
+            <Link href={`/admin/users/${params.row._id}`} passHref style={{ textDecoration: "none" }}>
               <div className={styles.viewButton}>View</div>
             </Link>
             <div
@@ -87,7 +87,7 @@ const UserDatatable = ({users,token}) => {
         onChange={(searchVal) => requestSearch(searchVal)}
         onCancelSearch={() => cancelSearch()}
         />
-          <Link href="/admin2/users/new" passHref >
+          <Link href="/admin/users/new" passHref >
             <span className={styles.link}>Add New</span>
           </Link>
         </div>
