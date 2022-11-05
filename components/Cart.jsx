@@ -10,6 +10,8 @@ import Alert from '@mui/material/Alert';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from "next/link";
 import { motion } from "framer-motion";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Zoom from 'react-reveal/Zoom';
 
 const Cart=()=> {
@@ -46,13 +48,17 @@ const Cart=()=> {
         cart.total==0?(
           <Zoom>
             <div className={styles.emptyContainer}>
-              <div className={styles.cartImg}>
-                <Image src="/img/emptyCart2.jpg" fill objectFit="cover" alt=""/>
-                  <Link href="/" passHref>
-                    <motion.div className={styles.backBtn} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}}>
-                      <ArrowBackIcon className={styles.arrow}/>
-                    </motion.div>
-                  </Link>
+              <div className={styles.emptyWrapper}>
+                <div className={styles.chat}>
+                  <ChatBubbleIcon className={styles.bubbleIcon}/>
+                  <p className={styles.message}>I'm empty</p>
+                </div>
+                <ShoppingCartIcon className={styles.cartIcon}/>
+                <Link href="/" passHref>
+                  <motion.div className={styles.backBtn} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}}>
+                    <ArrowBackIcon className={styles.arrow}/>
+                  </motion.div>
+                </Link>
               </div>
             </div>
           </Zoom>

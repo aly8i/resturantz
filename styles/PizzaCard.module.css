@@ -28,12 +28,8 @@
 }
 .container:hover {
   animation: shake 0.5s;
-  
 }
-/* .container:hover {
-  background-color: rgba(255, 221, 226, 0.704);
-  box-shadow: none;
-} */
+
 .image{
   border-radius: 20px;
   object-fit: cover;
@@ -52,10 +48,11 @@
   font-size: 14px;
   margin-top: 4px;
 }
+
 .price {
   font-family: "Lucida Console", "Courier New", monospace;
   align-items: center;
-  /* justify-content: center; */
+
   font-size: 22px;
   display:flex;
   flex-direction: row;
@@ -70,15 +67,11 @@
 
 @media screen and (max-width: 480px) {
   .container {
-    width: 100%;
+    scale: 0.9;
+  }
+  .image{
+    overflow: hidden;
+    height: 300;
   }
 
-  .title {
-    font-size: 30px;
-  }
-
-  .price,
-  .desc {
-    font-size: 24px;
-  }
 }

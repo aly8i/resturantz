@@ -10,9 +10,7 @@ import Arrow from "../components/Arrow";
 import { useSession } from "next-auth/react"
 
 
-
 export default function Home({ pizzaList,user,loggedIn}) {
-  const [token,setToken]= useState("");
   const [googleID,setGoogleID]= useState("");
   const [img,setImg]= useState("");
   const [username,setUsername]= useState("");

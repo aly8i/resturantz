@@ -32,12 +32,12 @@
   border-radius: 25px;
   width:60px;
   height:30px;
-  background-color: #f24779;
+  background-color: #d1411e;
   z-index: 20;
-  position: fixed;
-  top:85%;
-  right:48%;
-  transform: translate(15%,-52%);
+  position: absolute;
+  top:300px;
+  left:118px;
+  transform: translateX();
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .wrapper {
   width: 90%;
-  z-index: 30;
+  z-index: 4;
   background-color: #d1411e;
   max-height: 300px;
   border-radius: 20px;
@@ -87,7 +87,37 @@
 .totalTextTitle {
   margin-right: 10px;
 }
+.emptyWrapper{
+  color: #d1411e;
+  width: 300px;
+  height:280px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+}
+.cartIcon{
+  font-size: 200px;
+}
 
+.message{
+  position: absolute;
+  font-size: 15px;
+  font-weight: 600;
+  z-index: 6;
+  color: white;
+  top: 35px;
+  right: 40px;
+}
+
+.bubbleIcon{
+  font-size: 100px;
+  z-index: 5;
+  position: absolute;
+  top:5px;
+  right:25px;
+
+}
 .button {
   height: 30px;
   width:90%;
@@ -107,7 +137,6 @@
   .cartImg {
     width: 100vw;
     height: 89vh;
-    /* position: relative; */
   }
   .container {
     flex-direction: column;
