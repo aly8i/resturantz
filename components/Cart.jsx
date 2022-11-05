@@ -51,7 +51,7 @@ const Cart=()=> {
               <div className={styles.emptyWrapper}>
                 <div className={styles.chat}>
                   <ChatBubbleIcon className={styles.bubbleIcon}/>
-                  <p className={styles.message}>I'm empty</p>
+                  <p className={styles.message}>I&apos;mempty</p>
                 </div>
                 <ShoppingCartIcon className={styles.cartIcon}/>
                 <Link href="/" passHref>
