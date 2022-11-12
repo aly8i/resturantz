@@ -3,7 +3,7 @@ import styles from "../styles/PhoneNumberPopup.module.css";
 import {authentication} from '../Firebase';
 import {RecaptchaVerifier,signInWithPhoneNumber} from "firebase/auth";
 import OtpInput from "react-otp-input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';

@@ -201,7 +201,10 @@
     top: 115px;
     right:50%;
     transform: translate(50%);
-    color:grey;
+    background: linear-gradient(to right, red,black,yellow);
+    background-clip: text;
+    color: transparent;
+    /* text-fill-color: transparent; */
 }
 
 .link{
@@ -222,7 +225,10 @@
     }
 
     .loginTitle {
-        display: none;
+        /* display: none; */
+        scale: 0.5;
+        transform: translate(119%,60%);
+        min-width: 600px;
     }
 
     .center {
@@ -271,4 +277,18 @@
         margin-bottom: 20px;
         cursor: pointer;
     }
+}
+@media screen and (max-width: 600px) {
+    .loginTitle {
+        scale:0.4;
+        transform: translate(149%,80%);
+    }
+    
+}
+@media screen and (max-width: 500px) {
+    .loginTitle {
+        scale:0.4;
+        transform: translate(147%,80%);
+    }
+    
 }

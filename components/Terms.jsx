@@ -5,6 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import styles from "../styles/Terms.module.css"
 
 const bull = (
   <Box
@@ -17,7 +18,7 @@ const bull = (
 
 export default function OutlinedCard() {
   return (
-      <div>
+      <div className={styles.wrapper}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

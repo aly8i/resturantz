@@ -2,14 +2,11 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import styles from "../styles/Map.module.css";
 const Map = ({lat,lng,setLat,setLng})=>{
-  const MAPBOX_APIKEY = process.env.NEXT_PUBLIC_MAPBOX_APIKEY;
-//   mapboxgl.accessToken = REACT_APP_MAPBOX_APIKEY;
+  const MAPBOX_APIKEY = `${process.env.NEXT_PUBLIC_MAPBOX_APIKEY}`;
   mapboxgl.accessToken = MAPBOX_APIKEY;
   const mapContainer = useRef(null);
   const marker = useRef(null);
   const map = useRef(null);
-//   const [lng, setLng] = useState(35.4776);
-//   const [lat, setLat] = useState(33.8956);
   const [userLng, setUserLng] = useState(null);
   const [userLat, setUserLat] = useState(null);
   const [zoom, setZoom] = useState(9);
@@ -47,8 +44,6 @@ const Map = ({lat,lng,setLat,setLng})=>{
         setZoom(map.current.getZoom().toFixed(2));
       });
       marker.current = new mapboxgl.Marker().setLngLat([-70.9, 42.35]);
-
-      // map.current.on('click', handleClick);
    });
     return (
         <div className={styles.box}>

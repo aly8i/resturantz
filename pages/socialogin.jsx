@@ -1,8 +1,7 @@
 import styles from "../styles/SocialLogin.module.css";
 import Google from "../public/img/google.png";
 // import Facebook from "../img/facebook.png";
-import { useSession, signIn, signOut } from "next-auth/react"
-import { setCookie,getCookie } from 'cookies-next';
+import { signIn } from "next-auth/react"
 import Github from "../public/img/github.png";
 import Terms from "../components/Terms";
 import PhoneNumberPopup from "../components/PhoneNumberPopup";
@@ -11,9 +10,8 @@ import { motion } from "framer-motion";
 import Flip from 'react-reveal/Flip'
 
 
-const SocialLogin = ({token}) => {
+const SocialLogin = () => {
   const [close,setClose] = useState(true);
-  const { data: session } = useSession()
   const handleSignIn = (method)=>{
     signIn(method,{callbackUrl:`${process.env.NEXT_PUBLIC_BASE_URL}`});
   }
@@ -58,13 +56,3 @@ const SocialLogin = ({token}) => {
 };
 
 export default SocialLogin;
-export const getServerSideProps = ({req,res}) =>{
-  
-  const accessToken = getCookie('accessToken', { req, res });
-
-  return{
-    props:{
-      token: accessToken || "no token"
-    }
-  }
-}

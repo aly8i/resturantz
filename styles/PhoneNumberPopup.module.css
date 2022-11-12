@@ -111,7 +111,10 @@
     padding: 5px 0;
     align-self: flex-end;
   }
-  /* .addButton:hover {
-    background-color: darkred;
-  } */
-  
+
+  @media screen and (max-width: 600px){
+      .wrapper{
+        scale:0.6;
+      }
+      
+  }
