@@ -42,10 +42,8 @@ const PhoneNumberPopup = ({setClose}) => {
       });
       dispatch(addPhone({phonenumber,username:res.data.username,fullname:res.data.username}));
       dispatch(addID({id: res.data._id}));
-      console.log(res.data);
       router.push('/');
     }catch(err){
-      console.log(err);
       setStage(2);
     }
   }
@@ -57,7 +55,7 @@ const PhoneNumberPopup = ({setClose}) => {
       signInUser();
       }
     }).catch((error)=>{
-      console.log(error);
+      setStage(3);
     })
   }
 }
@@ -76,9 +74,12 @@ const requestOTP = (e) => {
       window.confirmationResult = confirmationResult;
       setStage(1);
   }).catch((error)=>{
-      console.log(error);
+      setStage(3);
   })
 }
+  const Retry = () =>{
+    router.reload(window.location.pathname);
+  }
   const closeit = () =>{
     setClose(true);
   }
@@ -174,7 +175,20 @@ const requestOTP = (e) => {
                 <button className={styles.addButton} onClick={()=>signUpUser()}>
                 Submit
                 </button>
-              </Bounce>`
+              </Bounce>
+              </>
+            }
+            {
+              stage == 3 && 
+              <>
+              <Bounce top>
+                <div className={styles.item}>
+                  <label className={styles.label}>There was error in your request! please retry</label>
+                </div>
+                <button className={styles.addButton} onClick={()=>Retry()}>
+                Retry
+                </button>
+              </Bounce>
               </>
             }
           </div>
