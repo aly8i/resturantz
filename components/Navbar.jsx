@@ -14,7 +14,6 @@ import { addSocial,addID,resetUser } from "../components/redux/userSlice";
 import { useSession } from "next-auth/react"
 import axios from 'axios';
 import { useEffect } from "react";
-import { Update } from "@mui/icons-material";
 const Navbar = () => {
   const { data: session } = useSession()
   const quantity = useSelector((state) => state.cart.quantity);
@@ -22,7 +21,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const logout = async() => {
-    await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`);
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`);
     signOut();  
   };
 
