@@ -32,14 +32,14 @@ const Navbar = () => {
         <NavMenu/>
       </div>
       <div className={styles.item}>
-        {user.id?<Link href={`/user/${user.id}`} passHref>
+        {user.id?(<Link href={`/user/${user.id}`} passHref>
           <motion.div whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}} className={styles.profilewrapper}>
           {user.username!="Guest"?<Image className={styles.avatar} src={user.img} alt="user" width={30} height={30} />:<AccountCircleIcon className={styles.avatar}/>}
           </motion.div>
-        </Link>:
+        </Link>):(
           <div className={styles.profilewrapper}>
           {user.username!="Guest"?<Image className={styles.avatar} src={user.img} alt="user" width={30} height={30} />:<Link href="/socialogin" passHref><AccountCircleIcon className={styles.avatar}/></Link>}
-          </div>
+          </div>)
         }
           <Link href={`/user/${user.id}`} passHref><motion.div className={styles.username} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}}>{user.username!="Guest"?user.username:""}</motion.div></Link>
           {user.username=="Guest"?(

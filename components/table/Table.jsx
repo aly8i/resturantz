@@ -54,11 +54,11 @@ const List = ({orders}) => {
               <TableCell className={styles.tableCell}>{order._id}</TableCell>
               <TableCell className={styles.tableCell}>
                 <div className={styles.cellWrapper}>
-                  <img src={order.products[0].product.img} alt="" className={styles.image} />
+                {order.products[0]?.product?.img?<img src={order.products[0].product.img} alt="" className={styles.image} />:<></>}
                   {order.products.map((product,i)=>(
-                  order.products.length==i+1?
-                  product.product.title+`(${product.amount})`:
-                  product.product.title+`(${product.amount}),`
+                  order?.products?.length==i+1?
+                  product?.product?.title+`(${product?.amount})`:
+                  product?.product?.title+`(${product?.amount}),`
                   ))}
                 </div>
               </TableCell>
