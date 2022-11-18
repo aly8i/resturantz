@@ -35,14 +35,14 @@ const userSlice = createSlice({
       state.fullname = action.payload.fullname;
     },
     resetUser: (state) => {
-        state.id=null;
-        state.token=null;
-        state.username=null;
-        state.fullname=null;
-        state.img=null;
-        state.phonenumber=null;
-        state.address=null;
-        state.location=null;
+      state.id = null;
+      state.username = "Guest";
+      state.fullname = "Guest";
+      state.img = "https://firebasestorage.googleapis.com/v0/b/hfc-resto.appspot.com/o/pizzas%2Fguest-user.jpg?alt=media&token=db829d3e-873c-4f50-b876-179998e49ba5";
+      state.phonenumber = null,
+      state.address = null;
+      state.location = null;
+      state.token = null;
     },
   },
 });

@@ -56,7 +56,7 @@ const EditUser = ({user,token,type}) => {
     }
     const handleSave = async()=>{
         setLoading(true);
-        const img="";
+        var img="";
         if(file!=null){
             img = await uploadFiles(file);
         }else{
