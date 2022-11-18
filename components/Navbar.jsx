@@ -22,6 +22,7 @@ const Navbar = () => {
 
   const logout = async() => {
     const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`);
+    console.log(res);
     signOut();  
   };
 
