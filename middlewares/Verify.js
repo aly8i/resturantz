@@ -1,6 +1,7 @@
 import { verify } from "jsonwebtoken";
+import { deleteCookie,getCookie } from 'cookies-next';
 const Verify = (fn) => async (req,res) => {
-  const token = req.body.token
+  const token = getCookie('accessToken', { req, res });
   if(!token) return res.status(401).json("You are not authenticated");
    verify(token,process.env.NEXT_PUBLIC_JWT_SECRET,async function(err,decoded){
     if(!err && decoded) {

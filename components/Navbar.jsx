@@ -19,12 +19,10 @@ const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
   const logout = async() => {
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`);
-    console.log(res);
-    deleteCookie("accessToken");
-    signOut();  
+    await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`).then((res)=>{
+      signOut(); 
+    });
   };
 
   const postUser = async(u)=>{
@@ -38,55 +36,44 @@ const Navbar = () => {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, newuser);
         return res.data._id;
     }catch(err){
-      console.log(err);
+      console.log("You have an account")
       try{
         const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/find`, newuser);
           return res.data._id
       }
       catch(err){
-        console.log(err);
+        console.log("An error occured")
       }
     }
   }
-  const loginWithToken = async(tok) => {
-    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signinwithtoken`,{token:tok},{
+  const loginWithToken = async() => {
+    await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signinwithtoken`,{},{
       withCredentials: true
     }).then((res)=>{
-      return res;
+        dispatch(addID({id:res.data.sub}));
+        dispatch(addSocial({img:res.data.img,username:res.data.username,fullname:res.data.username}));
     }).catch((err)=>{
-      console.log(err);
-    });
-  }
-  useEffect(()=>{
-    var loggedInWithToken = false;
-    var userCred = {};
-    const token = getCookie("accessToken");
-    if (token != undefined){
-      loginWithToken(token).then((res)=>{
-          userCred = res.data;
-          loggedInWithToken=true;
-      }).catch((err)=>{
-        console.log(err);
-      });
-    }
-    if(loggedInWithToken==true){
-      dispatch(addID({id:userCred._id}));
-      dispatch(addSocial({img:userCred.img,user:userCred.username,fullname:userCred.fullname}));
-    }else{
+      console.log("You are not authenticated");
       if(session){
         postUser(session.user).then((id)=>{
           dispatch(addSocial({img:session.user.image,username:session.user.name,fullname:session.user.name}));
           dispatch(addID({id}));
         })
         .catch((err) => {
-          console.log(err);
+          console.log("failed to post user");
         });
       }else{
+        console.log("you are not logged in");
         dispatch(resetUser());
       }
-    }
+    });
+  }
+  useEffect(()=>{
+    loginWithToken().catch((err)=>{
+        console.log(err);
+      });
     
-  },[session,])
+  },[session])
   return (
     <div className={styles.container}>
       <div className={styles.item}>
