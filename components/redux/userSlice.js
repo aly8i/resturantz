@@ -15,6 +15,8 @@ const userSlice = createSlice({
   reducers: {
     addID: (state, action) => {
       state.id=action.payload.id;
+      state.address=action.payload.address;
+      state.phonenumber = action.payload.phonenumber;
     },
     addToken: (state, action) => {
       state.token=action.payload.token;
@@ -31,8 +33,6 @@ const userSlice = createSlice({
       },
     addPhone:(state, action) => {
       state.phonenumber = action.payload.phonenumber;
-      state.username = action.payload.username;
-      state.fullname = action.payload.fullname;
     },
     resetUser: (state) => {
       state.id = null;

@@ -9,9 +9,9 @@ import Alert from '@mui/material/Alert';
 const OrderDetail = ({ createOrder }) => {
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state)=> state.user);
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState(user.fullname||"");
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber||"");
+  const [address, setAddress] = useState(user.address||"");
   const [customerID,setCustomerID] = useState(null);
   const [total,setTotal]=useState(null);
   const [products,setProducts] = useState([]);
@@ -61,6 +61,7 @@ const OrderDetail = ({ createOrder }) => {
           id="outlined-name"
           label="Full Name"
           error
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
           </div>
@@ -69,6 +70,7 @@ const OrderDetail = ({ createOrder }) => {
           error
           id="outlined-name"
           label="Phone Number"
+          value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
           </div>
@@ -77,14 +79,16 @@ const OrderDetail = ({ createOrder }) => {
             error
             id="outlined-multiline-static"
             label="Address"
+            value={address}
             multiline
             rows={4}
-            // defaultValue="(ex: Street name / building name / floor number)"
             onChange={(e) => setAddress(e.target.value)}
           />
           </div>
           <div className={styles.item}>
-            <Map className={styles.map} lng={lng} lat={lat} setLng={setLng} setLat={setLat}/>
+            <div className={styles.map}>
+              <Map lng={lng} lat={lat} setLng={setLng} setLat={setLat}/>
+            </div>
           </div>
           <motion.button whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} className={styles.button} onClick={handleClick}>
             Order

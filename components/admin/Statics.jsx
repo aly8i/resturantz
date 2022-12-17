@@ -18,8 +18,8 @@ const Statics = ({data,token}) => {
     const [slider1, setSlider1] = useState(data.slider1);
     const [slider2, setSlider2] = useState(data.slider2);
     const [location,setLocation]= useState(data.location);
-    const [phonenumber1,setPhonenumber1]= useState(data.phonenumber1);
-    const [phonenumber2,setPhonenumber2]= useState(data.phonenumber2);
+    const [phonenumber1,setPhonenumber1] = useState(data.phonenumber1);
+    const [phonenumber2,setPhonenumber2] = useState(data.phonenumber2);
     const [facebook,setFacebook]= useState(data.facebook);
     const [whatsapp,setWhatsapp]= useState(data.whatsapp);
     const [linkedin,setLinkedin]= useState(data.linkedin);

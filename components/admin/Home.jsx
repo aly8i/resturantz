@@ -13,21 +13,21 @@ const Home = ({users,orders,products}) => {
     return total;
   }
   return (  
-    <div className={styles.home}>
-     <Sidebar />
-        <div className={styles.homeContainer}>
-         <div className={styles.widgets}>
-           <Widget type="user" amount={users.length}/>
-           <Widget type="order" amount={orders.length}/>
-           <Widget type="earning" amount={calcEarnings()}/>
-           <Widget type="product" amount={products.length}/>
-         </div>
-         <div className={styles.charts}>
-           <Featured orders={orders}/>
-           <Chart className={styles.chart} title="Last 6 Months (Revenue)" orders={orders} type="revenue" aspect={2 / 1} />
-         </div>
-       </div>
- </div>
+  <div className={styles.home}>
+    <Sidebar />
+    <div className={styles.homeContainer}>
+      <div className={styles.widgets}>
+        <Widget type="user" amount={users.length}/>
+        <Widget type="order" amount={orders.length}/>
+        <Widget type="earning" amount={calcEarnings()}/>
+        <Widget type="product" amount={products.length}/>
+      </div>
+      <div className={styles.charts}>
+        <Featured orders={orders}/>
+        <Chart className={styles.chart} title="Last 6 Months (Revenue)" orders={orders} type="revenue" aspect={2 / 1} />
+      </div>
+    </div>
+  </div>
   );
 };
 

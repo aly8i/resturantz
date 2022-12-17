@@ -104,7 +104,7 @@ const OrderDatatable = ({orders,deliverys,token}) => {
     }
   };
   const mapColumn = [
-    {
+    { 
       field: "map",
       headerName: "Map Actions",
       width: 200,

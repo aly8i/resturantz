@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         .populate('products.product')
         .exec()
         .then(docs=>{
-            res.status(200).json(docs);
+          res.status(200).json(docs);
         })
     } catch (err) {
       res.status(500).json(err);

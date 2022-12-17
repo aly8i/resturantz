@@ -8,6 +8,13 @@ import axios from 'axios';
 import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
 import Progress from "../Progress";
 import { useRouter } from "next/router";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { InputLabel } from "@mui/material";
+import Alert from '@mui/material/Alert';
+
+
 const NewProduct = ({token}) => {
     const [file, setFile] = useState(null);
     const [title, setTitle] = useState("");
@@ -19,6 +26,7 @@ const NewProduct = ({token}) => {
     const[loading,setLoading] = useState(false);
     const [category,setCategory]= useState("");
     const router = useRouter();
+    const [error,setError] = useState(null);
     const server = axios.create({
       baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
       headers: {'Content-Type':'application/json'},
@@ -48,7 +56,29 @@ const NewProduct = ({token}) => {
   }
     return res1;
   }
+  const validate = () =>{
+    if(file==null){
+      setError("Please add a product Image.")
+      return false;
+    }else if(title==""){
+      setError("Please add a title.")
+      return false;
+    }else if(desc==""){
+      setError("Please add a description.")
+      return false;
+    }else if(prices.length==0){
+      setError("Please add prices.")
+      return false;
+    }else if(category==""){
+      setError("Please add a category.")
+      return false;
+    }else{
+      return true;
+    }
+  }
   const handleSave = async()=>{
+    const validated = validate();
+    if(!validated) return;
     setLoading(true);
     const img = await uploadFiles(file);
     const payload = {title,desc,prices,extraOptions,category,img};
@@ -143,12 +173,23 @@ const NewProduct = ({token}) => {
               />
               </div>
               <div className={styles.sFormInput}>
-              <TextField
-                id="outlined-name"
-                label="Category"
-                color="error"
-                onChange={(e) => setCategory(e.target.value)}
-              />
+              <FormControl color="error" sx={{ minWidth: 210 }}>
+                  <InputLabel >Category</InputLabel>
+                    <Select
+                      id="outlined-name"
+                      value={category}
+                      label="Category"
+                      onChange={(e) => setCategory(e.target.value)}
+                      renderValue={(value) => `${value}`}
+                      color="error"
+                    >
+                      <MenuItem color="error" value={'pizza'}>pizza</MenuItem>
+                      <MenuItem color="error" value={'burger'}>burger</MenuItem>
+                      <MenuItem color="error" value={'dish'}>dish</MenuItem>
+                      <MenuItem color="error" value={'meal'}>meal</MenuItem>
+                      <MenuItem  color="error" value={'drink'}>drink</MenuItem>
+                    </Select>
+              </FormControl>
               <div className={styles.priceInput}>
                 <div className={styles.smallFormInput}>
                   <TextField
@@ -208,12 +249,15 @@ const NewProduct = ({token}) => {
                   ))}
                 </div>
               </div>
-              <button onClick={handleSave}>Save</button>
-              {loading?(<Progress className={styles.progress}/>):null}
+              {loading?(<Progress className={styles.progress}/>):<button onClick={handleSave}>Save</button>}
             </div>
           </div>
         </div>
+        {error&&<Alert onClose={() => {setError(null)}} severity="error">
+        {error}
+      </Alert>}
       </div>
+
     </div>
   );
 };

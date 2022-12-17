@@ -95,8 +95,8 @@ const Cart=()=> {
                 </td>
                 <td>
                   <span className={styles.extras}>
-                    {product.extras.map((extra) => (
-                      <span key={extra._id}>{extra.text}, </span>
+                    {product.extras.map((extra,i) => (
+                      <span key={extra._id}>{product.extras.length==i+1?`${extra.text}`:`${extra.text}, `}</span>
                     ))}
                   </span>
                 </td>

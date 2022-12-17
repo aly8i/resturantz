@@ -10,9 +10,9 @@ const EditUser = dynamic(
 
 const User = ({ user,token }) => {
   return (
-  <div className={styles.container}>
+    <div className={styles.container}>
       <EditUser user={user} token={token} type="admin"/>
-  </div>
+    </div>
   );
 };
 

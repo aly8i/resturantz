@@ -8,7 +8,6 @@ import Tada from 'react-reveal/Tada'
 import { motion } from "framer-motion";
 import NavMenu from "./NavMenu";
 import { signOut } from "next-auth/react"
-import { deleteCookie,getCookie } from 'cookies-next';
 import { useDispatch } from "react-redux";
 import { addSocial,addID,resetUser } from "../components/redux/userSlice";
 import { useSession } from "next-auth/react"
@@ -34,12 +33,12 @@ const Navbar = () => {
     };
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, newuser);
-        return res.data._id;
+        return res.data;
     }catch(err){
       console.log("You have an account")
       try{
         const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/find`, newuser);
-          return res.data._id
+          return res.data
       }
       catch(err){
         console.log("An error occured")
@@ -55,9 +54,9 @@ const Navbar = () => {
     }).catch((err)=>{
       console.log("You are not authenticated");
       if(session){
-        postUser(session.user).then((id)=>{
+        postUser(session.user).then((data)=>{
           dispatch(addSocial({img:session.user.image,username:session.user.name,fullname:session.user.name}));
-          dispatch(addID({id}));
+          dispatch(addID({id:data._id,address:data.address,phonenumber:data.phonenumber}));
         })
         .catch((err) => {
           console.log("failed to post user");

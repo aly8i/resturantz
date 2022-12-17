@@ -13,6 +13,7 @@
 
 
 .wrapper {
+  scale:0.7;
   width: 500px;
   background-color: white;
   border-radius: 20px;
@@ -41,7 +42,6 @@
 .input {
   height: 40px;
 }
-
 .button {
   border: none;
   background-color: red;

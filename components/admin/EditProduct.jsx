@@ -7,7 +7,12 @@ import { useRouter } from "next/router";
 import {storage} from "../../Firebase";
 import axios from 'axios';
 import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import { InputLabel } from "@mui/material";
 import Progress from "../Progress";
+import Alert from '@mui/material/Alert';
 const EditProduct = ({product,token}) => {
     const [file, setFile] = useState(null);
     const [img,setImg] = useState(product.img)
@@ -23,6 +28,7 @@ const EditProduct = ({product,token}) => {
     const[loading,setLoading] = useState(false);
     const [category,setCategory]= useState(product.category);
     const router = useRouter();
+    const [error,setError] = useState(null);
     const server = axios.create({
       baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
       headers: {'Content-Type':'application/json'},
@@ -52,24 +58,45 @@ const EditProduct = ({product,token}) => {
   }
     return res1;
   }
-    const handleSave = async()=>{
-        setLoading(true);
-        const img="";
-        if(file!=null){
-            img = await uploadFiles(file);
-        }else{
-            img = product.img;
-        }
-        
-        const payload = {title,desc,prices,extraOptions,category,img};
-        try{
-        postProduct(payload);
-        setLoading(false);
-        router.push("/admin/products");
-        }catch(err){
-        console.log(err);
-        }  
+  const validate = () =>{
+    if(file==null&&!product.img){
+      setError("Please add a product Image.")
+      return false;
+    }else if(title==""){
+      setError("Please add a title.")
+      return false;
+    }else if(desc==""){
+      setError("Please add a description.")
+      return false;
+    }else if(prices.length==0){
+      setError("Please add prices.")
+      return false;
+    }else if(category==""){
+      setError("Please add a category.")
+      return false;
+    }else{
+      return true;
     }
+  }
+  const handleSave = async()=>{
+    const validated = validate();
+    if(!validated) return;
+    setLoading(true);
+    const img="";
+    if(file!=null){
+        img = await uploadFiles(file);
+    }else{
+        img = product.img;
+    }
+    const payload = {title,desc,prices,extraOptions,category,img};
+    try{
+    postProduct(payload);
+    setLoading(false);
+    router.push("/admin/products");
+    }catch(err){
+    console.log(err);
+    }  
+  }
     const handleOption = (index) => {
         const removedExtra = extraOptions.splice(index,1);
         setExtraOptions(extraOptions.filter((option) =>(option!==removedExtra[0])));
@@ -117,7 +144,7 @@ const EditProduct = ({product,token}) => {
       <Sidebar />
       <div className={styles.newContainer}>
         <div className={styles.top}>
-          <h1>Add New Product</h1>
+          <h1>Edit your Product</h1>
         </div>
         <div className={styles.bottom}>
           <div className={styles.left}>
@@ -154,24 +181,35 @@ const EditProduct = ({product,token}) => {
               />
               </div>
               <div className={styles.formInput}>
-              <TextField
-                id="outlined-multiline-static"
-                label="Description"
-                value={desc}
-                multiline
-                color="error"
-                rows={4}
-                onChange={(e) => setDesc(e.target.value)}
-              />
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Description"
+                  value={desc}
+                  multiline
+                  color="error"
+                  rows={4}
+                  onChange={(e) => setDesc(e.target.value)}
+                />
               </div>
               <div className={styles.sFormInput}>
-              <TextField
-                id="outlined-name"
-                label="Category"
-                value={category}
-                color="error"
-                onChange={(e) => setCategory(e.target.value)}
-              />
+                <FormControl color="error" sx={{ minWidth: 210 }}>
+                  <InputLabel >Category</InputLabel>
+                    <Select
+                      id="outlined-name"
+                      value={category}
+                      label="Category"
+                      onChange={(e) => setCategory(e.target.value)}
+                      renderValue={(value) => `${value}`}
+                      color="error"
+                      
+                    >
+                      <MenuItem color="error" value={'pizza'}>pizza</MenuItem>
+                      <MenuItem color="error" value={'burger'}>burger</MenuItem>
+                      <MenuItem color="error" value={'dish'}>dish</MenuItem>
+                      <MenuItem color="error" value={'meal'}>meal</MenuItem>
+                      <MenuItem  color="error" value={'drink'}>drink</MenuItem>
+                    </Select>
+                  </FormControl>
               <div className={styles.priceInput}>
                 <div className={styles.smallFormInput}>
                   <TextField
@@ -181,7 +219,7 @@ const EditProduct = ({product,token}) => {
                     value={pr0}
                     onChange={(e) => changePrice(e, 0)}
                   />
-                  </div>
+                </div>
                 <div className={styles.smallFormInput}>
                   <TextField
                     id="outlined-name"
@@ -239,6 +277,9 @@ const EditProduct = ({product,token}) => {
             </div>
           </div>
         </div>
+        {error&&<Alert onClose={() => {setError(null)}} severity="error">
+        {error}
+      </Alert>}
       </div>
     </div>
   );

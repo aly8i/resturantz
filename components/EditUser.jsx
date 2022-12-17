@@ -15,7 +15,8 @@ const EditUser = ({user,token,type}) => {
     const [username, setUsername] = useState(user.username);
     const [fullname, setFullname] = useState(user.fullname);
     const [googleID, setGoogleID] = useState(user.googleID);
-    const [phonenumber,setPhonenumber]= useState(user.phonenumber);
+    const [phonenumber,setPhonenumber]= useState(user.phonenumber||"");
+    const [address,setAddress]= useState(user.address||"");
     const [role,setRole]= useState(user.role);
     const [loading,setLoading] = useState (false);
     const router = useRouter();
@@ -63,7 +64,7 @@ const EditUser = ({user,token,type}) => {
             img = user.img;
         }
         
-        const payload = {username,fullname,phonenumber,img,role};
+        const payload = {username,fullname,phonenumber,img,role,address};
         try{
         postUser(payload);
         setLoading(false);
@@ -155,6 +156,15 @@ const EditUser = ({user,token,type}) => {
                     value={googleID}
                     color="error"
                     disabled
+                />
+              </div>
+              <div className={styles.formInput}>
+                <TextField
+                    id="outlined-name"
+                    label="Address"
+                    value={address}
+                    color="error"
+                    onChange={(e) => setAddress(e.target.value)}
                 />
               </div>
               {type=="admin"?(

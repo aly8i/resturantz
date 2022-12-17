@@ -7,9 +7,8 @@ const Home = dynamic(
 const page = ({users,orders,products}) => {
   return (
     <div >
-        <Home users={users} orders={orders} products={products}/>
+      <Home users={users} orders={orders} products={products}/>
     </div>
-    
   );
 };
 export const getServerSideProps = async (context) => {

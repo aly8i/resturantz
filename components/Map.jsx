@@ -46,12 +46,12 @@ const Map = ({lat,lng,setLat,setLng})=>{
       marker.current = new mapboxgl.Marker().setLngLat([-70.9, 42.35]);
    });
     return (
-        <div className={styles.box}>
+        // <div className={styles.box}>
         <div className={styles.mapWrapper}>
             <div ref={mapContainer} className={styles.mapContainer}>
                 <div ref={marker} className={styles.marker}></div>
             </div>
-        </div>
+        {/* </div> */}
         </div> 
     )
 }
