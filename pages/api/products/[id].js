@@ -1,7 +1,6 @@
 import dbConnect from "../../../util/mongo";
 import Product from "../../../models/Product";
 import AuthorizedPostPutDelete from "../../../middlewares/AuthorizedPostPutDelete";
-
 export default AuthorizedPostPutDelete( async function handler(req, res) {
   const {method, query: { id }} = req;
 
@@ -17,6 +16,7 @@ export default AuthorizedPostPutDelete( async function handler(req, res) {
   }
 
   if (method === "PUT") {
+    console.log(req.headers.authorization)
     try {
       const product = await Product.findByIdAndUpdate(id, req.body, {
         new: true,

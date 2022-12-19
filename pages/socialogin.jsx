@@ -1,6 +1,5 @@
 import styles from "../styles/SocialLogin.module.css";
 import Google from "../public/img/google.png";
-// import Facebook from "../img/facebook.png";
 import { signIn } from "next-auth/react"
 import Github from "../public/img/github.png";
 import Terms from "../components/Terms";
@@ -34,7 +33,7 @@ const SocialLogin = () => {
               Facebook
             </div> */}
             <Flip up>
-              <motion.div className={`${styles.loginButton} ${styles.github}`} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}}>
+              <motion.div className={`${styles.loginButton} ${styles.github}`} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} onClick={()=>{signIn('credentials',{username:"bla",fullname:"blabla",phonenumber:"8218218"})}}>
                 <img src={Github} alt="" className="icon" />
                 Github
               </motion.div>

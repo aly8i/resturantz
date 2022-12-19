@@ -4,7 +4,7 @@ import Product from "../../../../models/Product";
 import Authorized from "../../../../middlewares/Authorized";
 export default Authorized(async function handler(req, res) {
   const { method } = req;
-
+  const token = req.headers.authorization; 
   await dbConnect();
 
   if (method === "GET") {

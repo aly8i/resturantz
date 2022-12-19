@@ -11,8 +11,6 @@ import { useDispatch } from "react-redux";
 import { updateQuery } from "./redux/filterSlice";
 import { useRouter } from "next/router";
 
-
-
 function NavMenu() {
   const router = useRouter();
   const dispatch = useDispatch();

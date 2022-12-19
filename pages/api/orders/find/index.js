@@ -3,9 +3,7 @@ import Order from "../../../../models/Order";
 
 export default async function handler(req, res) {
   const { method } = req;
-
   await dbConnect();
-
   if (method === "POST") {
     try {
       Order.find({'customerID': req.body.customerID})

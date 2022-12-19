@@ -4,6 +4,7 @@ import generateAccessToken from "../../../functions/generateAccessToken";
 import Token from "../../../models/Token";
 import cookie from "cookie";
 import AuthorizedGet from "../../../middlewares/AuthorizedGet";
+import { verify } from "jsonwebtoken";
 export default AuthorizedGet( async function handler(req, res) {
   const { method } = req;
 
@@ -18,8 +19,15 @@ export default AuthorizedGet( async function handler(req, res) {
     }
   }
   if (method === "POST") {
+    verify(req.body.jwt,process.env.NEXT_PUBLIC_JWT_SECRET,async function(err,decoded){
+      if(!err && decoded) {
     try {
-      const user = await User.create(req.body);
+      const user = await User.create({      
+        googleID:decoded.googleID,
+        username:decoded.username,
+        fullname:decoded.fullname,
+        img:decoded.img
+      });
       const access = generateAccessToken(user);
       try {
         await Token.create({value:access,userID:user._id});
@@ -37,5 +45,6 @@ export default AuthorizedGet( async function handler(req, res) {
     } catch (err) {
       res.status(500).json(err);
     }
+  }})
   }
 });

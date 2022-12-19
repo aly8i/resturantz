@@ -8,6 +8,7 @@ const AuthorizedPostPutDelete = (fn) => async (req,res) => {
     return await fn(req, res)
   }else{
     const token = req.headers.authorization;
+    console.log(token);
     verify(token,process.env.NEXT_PUBLIC_JWT_SECRET,async function(err,decoded){
       if(!err && decoded) {
         if(decoded.sub==id || decoded.role=='admin'){

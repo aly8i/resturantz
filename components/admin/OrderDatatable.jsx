@@ -24,7 +24,6 @@ const OrderDatatable = ({orders,deliverys,token}) => {
     headers: {'Content-Type':'application/json'},
     withCredentials: true
   });
-  
   useEffect(() => {
     server.interceptors.request.use(
       async function (config) {

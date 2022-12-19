@@ -33,6 +33,8 @@ const userSlice = createSlice({
       },
     addPhone:(state, action) => {
       state.phonenumber = action.payload.phonenumber;
+      state.username = action.payload.username;
+      state.fullname = action.payload.fullname;
     },
     resetUser: (state) => {
       state.id = null;

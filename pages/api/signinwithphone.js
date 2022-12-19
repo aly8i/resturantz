@@ -16,7 +16,6 @@ const handler = async(req, res) => {
       }catch(err){
         res.status(500).json(err);
       }
-      
       try {
         await Token.create({value:access,userID:user._id});
       } catch (err) {

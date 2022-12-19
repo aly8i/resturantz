@@ -12,7 +12,6 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import Link from "next/link";
-
 const Sidebar = () => {
   return (
     <div className={styles.sidebar}>

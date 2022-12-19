@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Zoom from 'react-reveal/Zoom';
-
+import {sign} from 'jsonwebtoken';
 const Cart=()=> {
   const cart = useSelector((state) => state.cart);
   const [open, setOpen] = useState(false);
@@ -21,11 +21,10 @@ const Cart=()=> {
   const dispatch = useDispatch();
   const router = useRouter();
   const [error,setError]=useState(null);
-
   const createOrder = async (data) => {
-    
+    const jwt = sign(data,process.env.NEXT_PUBLIC_JWT_SECRET,{expiresIn: '30s'});
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, data);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {jwt});
       if (res.status === 201) {
         dispatch(resetCart());
         router.push(`/orders/${res.data._id}`);

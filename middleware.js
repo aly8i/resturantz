@@ -1,5 +1,6 @@
-import {NextResponse} from "next/server";
+import {NextResponse,NextRequest} from "next/server";
 import {jwtVerify} from 'jose';
+
 export default async function middleware(req) {
     const token =  req.cookies.get('accessToken');
     const url = req.url;
@@ -16,6 +17,5 @@ export default async function middleware(req) {
         }
         return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}`);
     }
-        return NextResponse.next();
-    
+    return NextResponse.next();
 }

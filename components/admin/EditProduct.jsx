@@ -52,9 +52,7 @@ const EditProduct = ({product,token}) => {
       const res11 = await server.put(`api/products/${product._id}/`, pay);
       res1=res11;
   }catch(err){
-    if(err.response.status>=300){
-      router.push("/");
-    }
+    router.push("/");
   }
     return res1;
   }
@@ -82,7 +80,7 @@ const EditProduct = ({product,token}) => {
     const validated = validate();
     if(!validated) return;
     setLoading(true);
-    const img="";
+    var img="";
     if(file!=null){
         img = await uploadFiles(file);
     }else{

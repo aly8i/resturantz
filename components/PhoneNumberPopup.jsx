@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { addPhone,addID } from "../components/redux/userSlice";
 import Bounce from 'react-reveal/Bounce'
 import { motion } from "framer-motion";
+import { signIn } from 'next-auth/react';
 const PhoneNumberPopup = ({setClose}) => {
   const [phonenumber,setPhonenumber]=useState("");
   const [OTP,setOTP] =useState("");
@@ -46,6 +47,7 @@ const PhoneNumberPopup = ({setClose}) => {
     }catch(err){
       setStage(2);
     }
+
   }
   const verifyOTP = () => {
   if (OTP.length === 6){

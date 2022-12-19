@@ -54,18 +54,8 @@
   border-radius: 10px;
   cursor: pointer;
 }
-/* .button:hover {
-  color: white;
-  background-color: rgba(255, 0, 0, 0.688);;
-
-} */
 @media screen and (max-height: 680px) {
   .wrapper {
     scale:0.5;
   }
 }
-/* @media screen and (max-height: 680px) {
-  .wrapper {
-    scale:0.7;
-  }
-} */

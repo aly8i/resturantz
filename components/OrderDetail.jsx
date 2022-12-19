@@ -45,7 +45,7 @@ const OrderDetail = ({ createOrder }) => {
   const validate = () =>{
     setError(null);
     if(name == "" || name == null || phoneNumber == "" || phoneNumber == null || address == "" || address == null){
-      setError("Please fill up all your order's details !")
+      setError("Please fill up all your order's details !");
       return false;
     }else{
       return true;

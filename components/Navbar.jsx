@@ -7,12 +7,13 @@ import Link from "next/link";
 import Tada from 'react-reveal/Tada'
 import { motion } from "framer-motion";
 import NavMenu from "./NavMenu";
-import { signOut } from "next-auth/react"
+import { signOut} from "next-auth/react"
 import { useDispatch } from "react-redux";
 import { addSocial,addID,resetUser } from "../components/redux/userSlice";
 import { useSession } from "next-auth/react"
 import axios from 'axios';
 import { useEffect } from "react";
+import {sign} from 'jsonwebtoken';
 const Navbar = () => {
   const { data: session } = useSession()
   const quantity = useSelector((state) => state.cart.quantity);
@@ -31,17 +32,18 @@ const Navbar = () => {
       fullname:u.name,
       img:u.image
     };
+    const jwt = sign(newuser,process.env.NEXT_PUBLIC_JWT_SECRET,{expiresIn: '30s'});
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, newuser);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {jwt});
         return res.data;
     }catch(err){
-      console.log("You have an account")
+      console.log("You have an account");
       try{
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/find`, newuser);
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/find`, {jwt});
           return res.data
       }
       catch(err){
-        console.log("An error occured")
+        console.log("An error occured");
       }
     }
   }
@@ -49,11 +51,10 @@ const Navbar = () => {
     await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/signinwithtoken`,{},{
       withCredentials: true
     }).then((res)=>{
-        dispatch(addID({id:res.data.sub}));
+        dispatch(addID({id:data._id,address:data.address,phonenumber:data.phonenumber}));
         dispatch(addSocial({img:res.data.img,username:res.data.username,fullname:res.data.username}));
     }).catch((err)=>{
-      console.log("You are not authenticated");
-      if(session){
+    if(session){
         postUser(session.user).then((data)=>{
           dispatch(addSocial({img:session.user.image,username:session.user.name,fullname:session.user.name}));
           dispatch(addID({id:data._id,address:data.address,phonenumber:data.phonenumber}));
@@ -65,7 +66,7 @@ const Navbar = () => {
         console.log("you are not logged in");
         dispatch(resetUser());
       }
-    });
+    })
   }
   useEffect(()=>{
     loginWithToken().catch((err)=>{

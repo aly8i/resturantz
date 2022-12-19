@@ -14,19 +14,16 @@ export default function Home({ pizzaList }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
-      <PizzaWrapper pizzaList={pizzaList}/>
-      <Arrow/>
+      <PizzaWrapper pizzaList={pizzaList} />
+      <Arrow />
     </div>
   );
 }
-
 export const getServerSideProps = async () => {
 
   var products= await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`).then((res)=>res.data).catch((err)=>{
     console.log(err);
   });
-
-
   return {
     props: {
       pizzaList: products,

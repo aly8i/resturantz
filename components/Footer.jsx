@@ -3,9 +3,7 @@ import BackgroundSlider from 'react-background-slider'
 import axios from "axios";
 import { useEffect,useState } from "react";
 const Footer = () => {
-  const [data,setData]=useState([
-    "/img/featured.png"
-  ]);
+  const [data,setData]=useState([]);
   useEffect(()=>{
     try{
     axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/static/`).then((res)=>{
@@ -19,7 +17,7 @@ const Footer = () => {
     <div id="footer" className={styles.container}>
       <div className={styles.item}>
         <div className={styles.bgimg}>
-          <BackgroundSlider images={data} duration={10} transition={2} />
+          {data.length>0?<BackgroundSlider images={data} duration={1} transition={1} />:<></>}
         </div>
       </div>
     </div>

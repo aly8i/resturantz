@@ -6,14 +6,14 @@ const OrderList = dynamic(
 )
 const page = ({orders,deliverys,token}) => {
   return (
-        <OrderList orders={orders} deliverys={deliverys} token={token}/>
+      <OrderList orders={orders} deliverys={deliverys} token={token}/>
     );
 };
 
 export default page;
 
 export const getServerSideProps = async (context) => {
-  var accessToken= "";
+  var accessToken = context.req.cookies.accessToken||"";
   var res1={};
   var res2={};
   const server = axios.create({
@@ -23,7 +23,6 @@ export const getServerSideProps = async (context) => {
   });
   server.interceptors.request.use(
     async function (config) {
-      accessToken =  context.req.cookies.accessToken;
       if (accessToken) {
         config.headers.authorization = accessToken;
       }
