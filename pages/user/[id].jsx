@@ -18,7 +18,7 @@ const User = ({ user,orders }) => {
 export const getServerSideProps = async (context) => {
   var accessToken= "";
   var res1={};
-  var res2={};
+  var res2=[];
   const server = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     headers: {'Content-Type':'application/json'},
@@ -56,7 +56,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       user: res1.data,
-      orders: res2.data,
+      orders: res2.data?.reverse(),
     },
   };
 };

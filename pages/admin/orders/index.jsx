@@ -14,8 +14,8 @@ export default page;
 
 export const getServerSideProps = async (context) => {
   var accessToken = context.req.cookies.accessToken||"";
-  var res1={};
-  var res2={};
+  var res1=[];
+  var res2=[];
   const server = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
     headers: {'Content-Type':'application/json'},
@@ -60,7 +60,7 @@ try{
 }
   return {
     props: {
-      orders: res1.data,
+      orders: res1.data.reverse(),
       deliverys: res2.data,
       token: accessToken,
     },
