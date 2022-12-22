@@ -10,7 +10,7 @@ const Single = dynamic(
 const User = ({ user,orders }) => {
   return (
   <div className={styles.container}>
-      <Single user={user} orders={orders}/>
+    <Single user={user} orders={orders}/>
   </div>
   );
 };

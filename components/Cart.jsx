@@ -1,10 +1,10 @@
 import styles from "../styles/Cart.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { use, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { resetCart } from "./redux/cartSlice";
+import { resetCart,decrementProduct,incrementProduct,saved,removeProduct, addCart } from "./redux/cartSlice";
 import OrderDetail from "../components/OrderDetail";
 import Alert from '@mui/material/Alert';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -13,7 +13,13 @@ import { motion } from "framer-motion";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import Zoom from 'react-reveal/Zoom';
-import {sign} from 'jsonwebtoken';
+import CancelIcon from '@mui/icons-material/Cancel';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import {sign,verify} from 'jsonwebtoken';
+import { setCookie,getCookie,deleteCookie } from "cookies-next";
+import { useEffect } from "react";
+
 const Cart=()=> {
   const cart = useSelector((state) => state.cart);
   const [open, setOpen] = useState(false);
@@ -21,11 +27,33 @@ const Cart=()=> {
   const dispatch = useDispatch();
   const router = useRouter();
   const [error,setError]=useState(null);
+  const [savee,setSavee] = useState(<>hi</>);
+  useEffect(()=>{
+    if(cart.stage==1){
+      setSavee(<motion.div className={styles.button} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} onClick={() => save()} >SAVE FOR LATER</motion.div>);
+    }else{
+      setSavee(<motion.div className={styles.button} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} onClick={() => unsave()}>UNSAVE</motion.div>)
+    }
+  },[cart.stage])
+  useEffect(()=>{
+    const cookie = getCookie('cart');
+    if(cart.stage!=1){
+    if(cookie){
+      verify(cookie,process.env.NEXT_PUBLIC_JWT_SECRET,async function(err,decoded){
+        if(!err && decoded) {
+          dispatch(addCart({products:decoded.products,size:decoded.size,quantity:decoded.quantity,total:decoded.total}));
+        }
+      });
+    }
+  }
+  },[])
+
   const createOrder = async (data) => {
     const jwt = sign(data,process.env.NEXT_PUBLIC_JWT_SECRET,{expiresIn: '30s'});
     try {
       const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/orders`, {jwt});
       if (res.status === 201) {
+        deleteCookie('cart');
         dispatch(resetCart());
         router.push(`/orders/${res.data._id}`);
       }
@@ -35,10 +63,32 @@ const Cart=()=> {
   };
   const validate = () =>{
     if(cart.total == 0){
-      setError("Your cart is empty !  Please add some items .")
+      setError("Your cart is empty !  Please add some items .");
     }else{
       setOpen(true);
     }
+  }
+  const save = () =>{
+    if(cart.total == 0){
+      setError("Your cart is empty !  Please add some items .");
+    }else{
+      const jwt = sign(cart,process.env.NEXT_PUBLIC_JWT_SECRET,{expiresIn: '30d'});
+      dispatch(saved({stage:2}));
+      setCookie('cart', jwt);
+    }
+  }
+  const unsave = () =>{
+    dispatch(saved({stage:1}));
+    deleteCookie('cart');
+  }
+  const remProduct = (product) => {
+    dispatch(removeProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
+  }
+  const incProduct = (product) => {
+    dispatch(incrementProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
+  }
+  const decProduct = (product) => {
+    dispatch(decrementProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
   }
 
   return (
@@ -110,6 +160,17 @@ const Cart=()=> {
                     ${product.price * product.quantity}
                   </span>
                 </td>
+                <td className={styles.td}>
+                  <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1}} onClick={()=>decProduct(product)}>
+                    <RemoveCircleIcon className={styles.subQ}/>
+                  </motion.div>
+                  <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1}} className={styles.addQ} onClick={()=>incProduct(product)}> 
+                    <AddCircleIcon/> 
+                  </motion.div>
+                  <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1}} className={styles.xQ} onClick={()=>remProduct(product)}> 
+                    <CancelIcon/> 
+                  </motion.div>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -138,7 +199,10 @@ const Cart=()=> {
               </motion.button>
             </div>
           ) : (
-            <motion.div className={styles.button} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} onClick={() => validate()} >CHECKOUT NOW!</motion.div>
+            <>
+              <motion.div className={styles.button} whileTap={{ scale: 0.8}} whileHover={{ scale: 1.1}} onClick={() => validate()} >CHECKOUT NOW!</motion.div>
+              {savee}
+            </>
           )}
         </div>
       </div>

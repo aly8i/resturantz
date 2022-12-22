@@ -1,7 +1,7 @@
 import styles from "../styles/Product.module.css";
 import Image from "next/image";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addProduct } from "../components/redux/cartSlice";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -10,20 +10,22 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import Roll from 'react-reveal/Roll';
 import Zoom from 'react-reveal/Zoom';
 import { motion } from "framer-motion";
-
-
+import { useRouter } from 'next/router';
 
 const Product = ({ product }) => {
+  const user = useSelector((state) => state.user);
   const [price, setPrice] = useState(product.prices[0]==0?product.prices[1]==0?product.prices[2]:product.prices[1]:product.prices[0]);
   const [size, setSize] = useState(product.prices[0]==0?product.prices[1]==0?2:1:0);
   const [quantity, setQuantity] = useState(1);
   const [extras, setExtras] = useState([]);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const changePrice = (number) => {
     setPrice(price + number);
   };
   const decrementFn = ()=>{
+    if(quantity==1) return;
     const temp = quantity - 1;
     setQuantity(temp);
   }
@@ -38,7 +40,6 @@ const Product = ({ product }) => {
   };
   const handleChange = (e, o) => {
     const checked = e.target.checked;
-
     if (checked) {
       changePrice(o.price);
       setExtras((prev) => [...prev, o]);
@@ -48,6 +49,10 @@ const Product = ({ product }) => {
     }
   };
   const handleClick = () => {
+    if(user.username=='Guest'){
+      router.push('/socialogin');
+      return;
+    }
     let sizee;
     if(size==0){
       sizee="s";

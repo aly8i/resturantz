@@ -16,10 +16,29 @@
   height: 100px;
   position: relative;
 }
+.td{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
 .cartImg {
   width: 40vw;
   height: 89vh;
   position: relative;
+}
+.addQ{
+  color: green;
+  cursor: pointer;
+}
+.subQ{
+color:blue;
+cursor: pointer;
+}
+.xQ{
+  color:red;
+  cursor: pointer;
 }
 .emptyContainer{
   align-items: center;

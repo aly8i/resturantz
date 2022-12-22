@@ -15,6 +15,7 @@ function NavMenu() {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleFilter = (query) =>{
+    router.push({pathname:'/'},undefined,{ scroll: false });
     dispatch(updateQuery({query}));
   }
   const handleHome = ()=>{

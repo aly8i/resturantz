@@ -106,12 +106,10 @@ const Navbar = () => {
             Logout
           </motion.div>)
           }
-          
       </div>
       <Tada>
         <Link href="/cart" passHref>
-          <motion.div className={styles.item} whileHover={{ scale: 1.1}}
-    whileTap={{ scale: 0.8}}>
+          <motion.div className={styles.item} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.8}}>
             <div className={styles.cart}>
               <div className={styles.profilewrapper}><Image src="/img/cart.png" alt="" width={30} height={30} /></div>
               <div className={styles.counter}>{quantity}</div>
