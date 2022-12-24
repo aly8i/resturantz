@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--second-color);
+  
 }
 
 .desc {
@@ -12,6 +14,7 @@
 }
 
 .wrapper {
+  background-color: var(--second-color);
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -20,25 +23,13 @@
   flex-wrap: wrap;
   gap: 20px 20px;
   padding: 10px 0;
-  border-radius: 100px;
 }
 
 .box {
-
-
-  
-  
   min-height: 200px;
   width: 50vw;
-
-  background: white;
-
+  background: var(--second-color);
 }
-
-
-/* body {
-  background: #EEF2F7;
-} */
 
 @media screen and (max-width: 480px) {
   .title {

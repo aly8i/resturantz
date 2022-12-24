@@ -1,6 +1,6 @@
 .navbar {
   height: 50px;
-  border-bottom: 0.5px solid rgb(231, 228, 228);
+  border-bottom: 0.5px solid var(--second-color);
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -53,9 +53,9 @@
         .counter {
           width: 15px;
           height: 15px;
-          background-color: red;
+          background-color: var(--first-color-s);
           border-radius: 50%;
-          color: white;
+          color: var(--second-color);
           display: flex;
           align-items: center;
           justify-content: center;

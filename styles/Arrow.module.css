@@ -17,7 +17,7 @@
 .bounce {
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--second-color);
     font-size: 70px;
 	-moz-animation: bounce 3s infinite;
 	-webkit-animation: bounce 3s infinite;

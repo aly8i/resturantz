@@ -1,5 +1,4 @@
 import styles from "../../styles/adminChart.module.scss";
-import { useEffect } from "react";
 import {
   AreaChart,
   Area,
@@ -9,6 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 const Chart = ({ aspect, title, orders, type }) => {
+  const color1 = "#FF0000"
   const getTotalByDate = (m,y) =>{
     var month = m;
     var year = y;
@@ -114,8 +114,8 @@ const Chart = ({ aspect, title, orders, type }) => {
         >
           <defs>  
             <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#FF0000" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#FF0000" stopOpacity={0} />
+              <stop offset="5%" stopColor={color1} stopOpacity={0.8} />
+              <stop offset="95%" stopColor={color1} stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="month" stroke="gray" />
@@ -124,7 +124,7 @@ const Chart = ({ aspect, title, orders, type }) => {
           <Area
             type="monotone"
             dataKey="total"
-            stroke="#FF0000"
+            stroke={color1}
             fillOpacity={1}
             fill="url(#total)"
           />

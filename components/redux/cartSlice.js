@@ -16,7 +16,7 @@ const cartSlice = createSlice({
       for(var i=0;i<state.products.length;i++){
         available = true;
         if(state.products[i]._id==action.payload._id){
-          if(action.payload.extras.length==state.products[i].extras.length){
+          if(action.payload.extras.length==state.products[i].extras.length&&action.payload.size==state.products[i].size){
             for(var y=0;y<state.products[i].extras.length;y++){
               if(state.products[i].extras[y].text!=action.payload.extras[y].text){
                 available = false;
@@ -47,7 +47,7 @@ const cartSlice = createSlice({
       for(var i=0;i<state.products.length;i++){
         booll=true;
         if(state.products[i]._id==action.payload.id){
-          if(action.payload.extras.length==state.products[i].extras.length){
+          if(action.payload.extras.length==state.products[i].extras.length&&action.payload.size==state.products[i].size){
             for(var y=0;y<state.products[i].extras.length;y++){
               if(state.products[i].extras[y].text!=action.payload.extras[y].text){
                 booll = false;
@@ -78,7 +78,7 @@ const cartSlice = createSlice({
       for(var i=0;i<state.products.length;i++){
         booll=true;
         if(state.products[i]._id==action.payload.id){
-          if(action.payload.extras.length==state.products[i].extras.length){
+          if(action.payload.extras.length==state.products[i].extras.length&&action.payload.size==state.products[i].size){
             for(var y=0;y<state.products[i].extras.length;y++){
               if(state.products[i].extras[y].text!=action.payload.extras[y].text){
                 booll = false;
@@ -114,7 +114,7 @@ const cartSlice = createSlice({
       for(var i=0;i<state.products.length;i++){
         booll=true;
         if(state.products[i]._id==action.payload.id){
-          if(action.payload.extras.length==state.products[i].extras.length){
+          if(action.payload.extras.length==state.products[i].extras.length&&action.payload.size==state.products[i].size){
             for(var y=0;y<state.products[i].extras.length;y++){
               if(state.products[i].extras[y].text!=action.payload.extras[y].text){
                 booll = false;

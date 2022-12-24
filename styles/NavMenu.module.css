@@ -1,11 +1,11 @@
 .container{
-    background-color: #d1411e;
+    background-color: var(--first-color);
 }
 .ul .li:hover::after{
     opacity:0.5;
 }
 .ul .li .icon{
-    color: rgb(231, 17, 17);
+    color: var(--first-color-s);
     font-size: 1.75em;
     transition:0.5;
     transition-delay: 0.25s;
@@ -15,7 +15,7 @@
 
 .ul .li:hover .icon{
     transform: scale(0);
-    color: #fff;
+    color: var(--second-color);
     transition-delay: 0s;
 }
 
@@ -26,12 +26,10 @@
 }
 
 .title{
-        font-size: 72px;
-        background: -webkit-linear-gradient(rgb(243, 1, 1), rgb(250, 151, 151));
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      
-    /* color:#d1411e; */
+    font-size: 72px;
+    background: -webkit-linear-gradient(var(--first-color), rgb(250, 151, 151));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size:1.2rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -55,7 +53,7 @@
     justify-content: center;
     gap:30px;
     list-style-type: none;
-    background-color: #d1411e;
+    background-color: var(--first-color);
     padding: 0px 0px 0px 0px;
 }
 
@@ -66,8 +64,8 @@
     width: 50px;
     height:50px;
     border-radius:50px;
-    background:#fff;
-    box-shadow:0px 5px 20px rgb(255,255,255);
+    background:var(--second-color);
+    box-shadow:0px 5px 20px var(--second-color);
     display:flex;
     justify-content: center;
     align-items: center;

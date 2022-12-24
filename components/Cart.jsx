@@ -1,7 +1,7 @@
 import styles from "../styles/Cart.module.css";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { use, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { resetCart,decrementProduct,incrementProduct,saved,removeProduct, addCart } from "./redux/cartSlice";
@@ -82,13 +82,13 @@ const Cart=()=> {
     deleteCookie('cart');
   }
   const remProduct = (product) => {
-    dispatch(removeProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
+    dispatch(removeProduct({id:product._id,size:product.size,extras:product.extras,quantity:product.quantity,price:product.price}));
   }
   const incProduct = (product) => {
-    dispatch(incrementProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
+    dispatch(incrementProduct({id:product._id,size:product.size,extras:product.extras,quantity:product.quantity,price:product.price}));
   }
   const decProduct = (product) => {
-    dispatch(decrementProduct({id:product._id,extras:product.extras,quantity:product.quantity,price:product.price}));
+    dispatch(decrementProduct({id:product._id,size:product.size,extras:product.extras,quantity:product.quantity,price:product.price}));
   }
 
   return (
@@ -120,6 +120,7 @@ const Cart=()=> {
             <tr className={styles.trTitle}>
               <th>Product</th>
               <th>Name</th>
+              <th>Size</th>
               <th>Extras</th>
               <th>Price</th>
               <th>Quantity</th>
@@ -143,9 +144,12 @@ const Cart=()=> {
                   <span className={styles.name}>{product.title}</span>
                 </td>
                 <td>
+                  <span className={styles.size}>{product.size}</span>
+                </td>
+                <td>
                   <span className={styles.extras}>
                     {product.extras.map((extra,i) => (
-                      <span key={extra._id}>{product.extras.length==i+1?`${extra.text}`:`${extra.text}, `}</span>
+                      <span className={styles.extra} key={extra._id}>{product.extras.length==i+1?`${extra.text}`:`${extra.text}, `}</span>
                     ))}
                   </span>
                 </td>
@@ -165,7 +169,7 @@ const Cart=()=> {
                     <RemoveCircleIcon className={styles.subQ}/>
                   </motion.div>
                   <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1}} className={styles.addQ} onClick={()=>incProduct(product)}> 
-                    <AddCircleIcon/> 
+                    <AddCircleIcon/>
                   </motion.div>
                   <motion.div whileTap={{ scale: 0.9 }} whileHover={{ scale: 1.1}} className={styles.xQ} onClick={()=>remProduct(product)}> 
                     <CancelIcon/> 

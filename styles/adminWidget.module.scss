@@ -28,8 +28,8 @@
     .link {
       width: max-content;
       font-size: 12px;
-      color:#d1411e;
-      border-bottom: 1px solid #d1411e;
+      color: var(--first-color);
+      border-bottom: 1px solid var(--first-color);
       cursor: pointer;
     }
 

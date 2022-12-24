@@ -11,27 +11,27 @@
   width:20%;
   text-align: center;
   gap:0;
-  border:2px solid white;
+  border:2px solid var(--second-color);
 }
 .tbig{
   width:40%;
   text-align: center;
   gap:0;
-  border:2px solid white;
+  border:2px solid var(--second-color);
 }
 .tsmall{
   width:10%;
   text-align: center;
   gap:0;
-  border:2px solid white;
+  border:2px solid var(--second-color);
 }
 .red{
   background-color: red;
-  color: white;
+  color: var(--second-color);
 }
 .white{
-  background-color: white;
-  color: red;
+  background-color: var(--second-color);
+  color: var(--first-color-s);
 }
 .up {
   flex: 2;
@@ -112,7 +112,7 @@
   width: 90%;
   max-height: 300px;
   background-color: #333;
-  color: white;
+  color: var(--second-color);
   padding: 10px 50px 50px 50px;
   display: flex;
   flex-direction: column;
@@ -124,7 +124,7 @@
 }
 
 .button {
-  background-color: white;
+  background-color: var(--second-color);
   height: 30px;
   color: teal;
   font-weight: bold;
@@ -144,26 +144,26 @@
     width:20%;
     text-align: center;
     gap:0;
-    border:2px solid white;
+    border:2px solid var(--second-color);
   }
   .tbig{
     width:40%;
     text-align: center;
     gap:0;
-    border:2px solid white;
+    border:2px solid var(--second-color);
   }
   .tsmall{
     width:10%;
     text-align: center;
     gap:0;
-    border:2px solid white;
+    border:2px solid var(--second-color);
   }
   .red{
     background-color: red;
-    color: white;
+    color: var(--second-color);
   }
   .white{
-    background-color: white;
+    background-color: var(--second-color);
     color: red;
   }
   .up {
@@ -258,7 +258,7 @@
     width: 90%;
     max-height: 300px;
     background-color: #333;
-    color: white;
+    color: var(--second-color);
     padding: 0px;
     display: flex;
     flex-direction: column;
@@ -270,7 +270,7 @@
   }
   
   .button {
-    background-color: white;
+    background-color: var(--second-color);
     height: 30px;
     color: teal;
     font-weight: bold;

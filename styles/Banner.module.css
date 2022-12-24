@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     height: 400px;
-    background-color: white;
+    background-color: var(--second-color);
     padding-left: 32px;
   }
   
@@ -21,7 +21,7 @@
   }
   
   .banner h1 {
-        color: #fff;
+        color: var(--second-color);
         text-shadow:
             0 0 7px #b80006,
             0 0 10px #b80006,
@@ -49,7 +49,7 @@
   .calltoaction i {
     line-break  : 100px;
     transition: transform 150ms ease-in-out;
-    color: #fff;
+    color: var(--second-color);
     text-shadow:
         0 0 7px #b80006,
         0 0 10px #b80006,

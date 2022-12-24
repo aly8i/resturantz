@@ -65,8 +65,6 @@ const Product = ({ product }) => {
   };
 
   return (
-    
-
     <div className={styles.container}>
       <Roll left>
       <div className={styles.left}>
@@ -105,9 +103,7 @@ const Product = ({ product }) => {
                 <span className={styles.number}>Large</span>
               </motion.div>
             )
-          }
-          
-          
+          }  
         </div>
         <h3 className={styles.choose}>Choose additional ingredients</h3>
         <div className={styles.ingredients}>

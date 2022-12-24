@@ -1,12 +1,13 @@
 .container {
   height: 100px;
   padding: 0px 50px;
-  background-color: #d1411e;
+  background-color: var(--first-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
   justify-content: center;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 999;
 }
@@ -28,11 +29,11 @@
   border-radius: 50%;
   object-fit: cover;
   border:none;
-  color: white;
+  color: var(--second-color);
   
 }
 .phone{
-  color:white;
+  color:var(--second-color);
   font-size: 50px;
 }
 .item {
@@ -43,7 +44,7 @@
 }
 .username{
   padding-left: 10px;
-  color: white;
+  color: var(--second-color);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -52,7 +53,7 @@
 .logout{
   padding-left: 10px;
   padding-right: 10px;
-  color: white;
+  color: var(--second-color);
   cursor: pointer;
   align-items: center;
   justify-content: center;
@@ -85,7 +86,7 @@
 }
 
 .callButton {
-  background-color: white;
+  background-color: var(--second-color);
   border-radius: 50%;
   padding: 10px;
   width: 50px;
@@ -96,7 +97,7 @@
 
 .texts {
   margin-left: 20px;
-  color: white;
+  color: var(--second-color);
 }
 .texts:hover{
   font-weight: bold;
@@ -116,7 +117,7 @@
   display: flex;
   align-items: center;
   list-style: none;
-  color: white;
+  color: var(--second-color);
   justify-content: center;
   
 }
@@ -138,13 +139,13 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--second-color);
     padding: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: #d1411e;
+    color: var(--first-color);
 }
 
 

@@ -14,11 +14,14 @@ import { useSession } from "next-auth/react"
 import axios from 'axios';
 import { useEffect } from "react";
 import {sign} from 'jsonwebtoken';
+import Pulse from "./Pulse";
+import { useState } from "react";
 const Navbar = () => {
   const { data: session } = useSession()
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const [loading,setLoading] = useState(true);
   const logout = async() => {
     await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/logout`).then((res)=>{
       signOut(); 
@@ -69,7 +72,10 @@ const Navbar = () => {
     })
   }
   useEffect(()=>{
-    loginWithToken().catch((err)=>{
+    setLoading(true);
+    loginWithToken().then(()=>{
+      setLoading(false);
+    }).catch((err)=>{
         console.log(err);
       });
     
@@ -86,6 +92,7 @@ const Navbar = () => {
       <div className={styles.item}>
         <NavMenu/>
       </div>
+      {loading==true?(<div className={styles.item}><Pulse/></div>):(
       <div className={styles.item}>
         {user.id?(<Link href={`/user/${user.id}`} passHref>
           <motion.div whileHover={{ scale: 1.1}} whileTap={{ scale: 0.9}} className={styles.profilewrapper}>
@@ -106,7 +113,8 @@ const Navbar = () => {
             Logout
           </motion.div>)
           }
-      </div>
+      </div>)
+      }
       <Tada>
         <Link href="/cart" passHref>
           <motion.div className={styles.item} whileHover={{ scale: 1.1}} whileTap={{ scale: 0.8}}>

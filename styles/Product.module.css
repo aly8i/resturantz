@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--second-color);
 }
 
 .left {
@@ -28,10 +29,10 @@
 }
 
 .price {
-  color: #d1411e;
+  color: var(--first-color);
   font-size: 24px;
   font-weight: 400;
-  border-bottom: 1px solid #d1411e;
+  border-bottom: 1px solid var(--first-color);
 }
 
 .sizes {
@@ -61,7 +62,7 @@
   top: -5px;
   right: -20px;
   background-color: red;
-  color: white;
+  color: var(--second-color);
   font-size: 12px;
   padding: 0 5px;
   border-radius: 10px;
@@ -98,7 +99,7 @@
 .quantity {
   width: 50px;
   height: 30px;
-  border: 2px solid grey;
+  border: 2px solid var(--third-color);
   text-align: center;
   border-radius: 10px;
   font-weight: 600;
@@ -115,8 +116,8 @@
 .button {
   height: 30px;
   margin-left: 10px;
-  background-color: #d1411e;
-  color: white;
+  background-color: var(--first-color);
+  color: var(--second-color);
   border: none;
   font-weight: 500;
   font-size: medium;
@@ -173,44 +174,3 @@
     padding: 10px 20px;
   }
 }
- /* .container {
-    height: auto;
-    text-align: center;
-    flex-direction: column;
-    margin-top: 20px;
-    background-color: #d1411e;
-  }
-
-  .imgContainer {
-    width: 70vw;
-    height: 70vw;
-  }
-
-  .title {
-    margin: 5px;
-  }
-
-  .sizes {
-    width: 100%;
-    padding: 0px 20px;
-  }
-
-  .ingredients {
-    flex-direction: column;
-  }
-
-  .option {
-    margin: 10px;
-    font-size: 18px;
-  }
-
-  .checkbox {
-    width: 25px;
-    height: 25px;
-  }
-
-  .quantity,
-  .button {
-    height: 50px;
-    padding: 10px 20px;
-  } */

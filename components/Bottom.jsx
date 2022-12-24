@@ -35,7 +35,7 @@ function Bottom() {
   },[])
   return (
     <div id="bottom" className={styles.container}>
-    <footer className="text-center text-lg-start bg-white text-muted">
+    <footer className={`${styles.white} text-center text-lg-start bg-white text-muted`}>
     <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
     <div className="me-5 d-none d-lg-block">
       <span>Get connected with us on social networks:</span>

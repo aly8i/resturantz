@@ -54,7 +54,7 @@
               margin-right: 15px;
               cursor: pointer;
               .xIcon{
-                color: red;
+                color: var(--first-color-s);
               }
             }
           }
@@ -96,7 +96,7 @@
                   padding: 5px;
                   font-size: 14px;
                   border: 1px solid tomato;
-                  background-color: white;
+                  background-color: var(--second-color);
                   color: tomato;
                   margin-right: 10px;
                   border-radius: 10px;
@@ -124,8 +124,8 @@
               width: 150px;
               padding: 10px;
               border: none;
-              background-color: red;
-              color: white;
+              background-color: var(--first-color-s);
+              color: var(--second-color);
               font-weight: bold;
               border-radius:8px;
               cursor: pointer;
@@ -213,7 +213,7 @@
                       padding: 5px;
                       font-size: 14px;
                       border: 1px solid tomato;
-                      background-color: white;
+                      background-color: var(--second-color);
                       color: tomato;
                       margin-right: 10px;
                       border-radius: 10px;
@@ -241,15 +241,19 @@
                   width: 150px;
                   padding: 10px;
                   border: none;
-                  background-color: red;
-                  color: white;
+                  background-color: var(--first-color-s);;
+                  color: var(--second-color);
                   font-weight: bold;
                   border-radius:8px;
                   cursor: pointer;
                   margin-top: 10px;
+                  transition: cubic-bezier(0.075, 0.82, 0.165, 1)0.7s;
                 }
                 button:hover{
-                  background-color: darkred;
+                  scale: 1.1;
+                }
+                button:active{
+                  scale: 0.9;
                 }
               }
             }

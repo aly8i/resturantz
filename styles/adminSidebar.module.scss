@@ -1,8 +1,8 @@
 .sidebar {
   flex: 1;
-  border-right: 0.5px solid rgb(230, 227, 227);
+  border-right: 0.5px solid var(--second-color);
   min-height: 100vh;
-  background-color: white;
+  background-color: var(--second-color);
 
   .top {
     height: 50px;
@@ -13,13 +13,13 @@
     .logo {
       font-size: 20px;
       font-weight: bold;
-      color: red;
+      color: var(--first-color-s);
     }
   }
 
   hr {
     height: 0;
-    border: 0.5px solid rgb(230, 227, 227);
+    border: 0.5px solid var(--second-color);
   }
 
   .center {
@@ -33,7 +33,7 @@
       .title {
         font-size: 10px;
         font-weight: bold;
-        color: #999;
+        color: var(--third-color);
         margin-top: 15px;
         margin-bottom: 5px;
       }
@@ -45,12 +45,12 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #ece8ff;
+          background-color: var(--second-color);
         }
 
         .icon {
           font-size: 18px;
-          color: red;
+          color: var(--first-color-s);
         }
 
         span{
